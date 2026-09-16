@@ -4,7 +4,7 @@ Coleção de exercícios da disciplina **Programming & Algorithms**.
 
 ## Organização
 
-- [codigo](./codigo/) — implementações dos exercícios;
+- [codigo](./codigo/) — códigos-fonte e versões executáveis dos exercícios;
 - [fluxograma](./fluxograma/) — fluxogramas correspondentes aos exercícios.
 
 Sempre que possível, use o mesmo número e nome de exercício nas duas pastas.
