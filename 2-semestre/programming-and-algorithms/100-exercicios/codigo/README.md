@@ -18,6 +18,9 @@ Pasta destinada aos exercícios de **Programming & Algorithms**.
 | 19 | [`exercicio-019.exe`](./exercicio-019.exe) |
 | 20 | [`exercicio-020.exe`](./exercicio-020.exe) |
 | 21 | [`exercicio-021.exe`](./exercicio-021.exe) |
+| 22 | [`exercicio-022.exe`](./exercicio-022.exe) |
+| 23 | [`exercicio-023.exe`](./exercicio-023.exe) |
+| 24 | [`exercicio-024.exe`](./exercicio-024.exe) |
 | 25 | [`exercicio-025.exe`](./exercicio-025.exe) |
 | 26 | [`exercicio-026.exe`](./exercicio-026.exe) |
 | 27 | [`exercicio-027.exe`](./exercicio-027.exe) |
