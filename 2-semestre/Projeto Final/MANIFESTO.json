@@ -1,0 +1,880 @@
+{
+  "arquivos": [
+    {
+      "arquivo": ".dockerignore",
+      "bytes": 262,
+      "sha256": "203339a72b052d83ef1473492422b2dc1e8ccd2bf1909cb026d0cba2e66b2549"
+    },
+    {
+      "arquivo": ".github/workflows/verificar.yml",
+      "bytes": 1038,
+      "sha256": "8cec1eb8fc722a14ca38b1c39b688c4d97202a5a95e770139a53b05b3c4b41f8"
+    },
+    {
+      "arquivo": ".gitignore",
+      "bytes": 264,
+      "sha256": "fbcbaf0ec661fd738f3818ff31460c36e5567a06f17fea151e84aeab88ad51a4"
+    },
+    {
+      "arquivo": "deploy/hostinger/activate_app.py",
+      "bytes": 1254,
+      "sha256": "d185dd9e1b7f35cfb2af4ae2eab556834fbee513f22c8db589b66ea230d100b6"
+    },
+    {
+      "arquivo": "deploy/hostinger/backend.env.example",
+      "bytes": 772,
+      "sha256": "7e87e40a5594da751640773c35d7c05bba17d2012a155a9f267881054a24ec34"
+    },
+    {
+      "arquivo": "deploy/hostinger/backup.sh",
+      "bytes": 774,
+      "sha256": "d0cb01939813ca6ed426a9e444e6277334c25a2aeb156295e1e71159b0e4de34"
+    },
+    {
+      "arquivo": "deploy/hostinger/backup_sql.py",
+      "bytes": 938,
+      "sha256": "23b7f128ca16f173d91908c1674cf90c1c550d4180345a00376a74c4393a0443"
+    },
+    {
+      "arquivo": "deploy/hostinger/bootstrap_hostinger.py",
+      "bytes": 4358,
+      "sha256": "3b274387df06c106f47bf1c1900e7f1788bf28876c6c7ccfb35479e84bb89db3"
+    },
+    {
+      "arquivo": "deploy/hostinger/compose.yaml",
+      "bytes": 2650,
+      "sha256": "cc71e1537015250877f5622ea8bbe0ded96a91a65fe4822246784fa31978653f"
+    },
+    {
+      "arquivo": "deploy/hostinger/Dockerfile.api",
+      "bytes": 1080,
+      "sha256": "7afebe7954f984ce96b206f8384b8d2931b76ee6f6cd97bd2c1b07d4c262415f"
+    },
+    {
+      "arquivo": "deploy/hostinger/Dockerfile.web",
+      "bytes": 659,
+      "sha256": "33b8a85c79e6b9e70330ee4deb4fa433d9677c26b776e63de80b0e1706b1fc2c"
+    },
+    {
+      "arquivo": "deploy/hostinger/edutrack-backup.service",
+      "bytes": 219,
+      "sha256": "f272824d88a495e801fc4593e495b3c4328e5a50a390a75d9c68b1d3494e4a36"
+    },
+    {
+      "arquivo": "deploy/hostinger/edutrack-backup.timer",
+      "bytes": 165,
+      "sha256": "c1220e7bd7db0a34f54d84ec3094394a843a22fbfb2d180dd3de6ebd5cc205a7"
+    },
+    {
+      "arquivo": "deploy/hostinger/edutrack.nginx.conf",
+      "bytes": 1056,
+      "sha256": "cbeca098c64b9afa68a888b54135fb197a5501b1eb776e2858d8f7ecbdb9cce3"
+    },
+    {
+      "arquivo": "deploy/hostinger/mssql.conf",
+      "bytes": 130,
+      "sha256": "2eee619e695de25f57ae666c1668130d1566e2341dca90b75c3b6f51a83e938d"
+    },
+    {
+      "arquivo": "deploy/hostinger/provision_sql.py",
+      "bytes": 1995,
+      "sha256": "17bf010aa15684f89eea030eb0f41790d5f349c2f253cd40153389b6e3bd4dc1"
+    },
+    {
+      "arquivo": "deploy/hostinger/refresh_tls.py",
+      "bytes": 1917,
+      "sha256": "d1aca219338684153b4ba83445863938c00cd2c747e9e39a1d1cb148ae964b95"
+    },
+    {
+      "arquivo": "deploy/hostinger/renew-certificate.sh",
+      "bytes": 563,
+      "sha256": "97130b6a6b8dea807c0c964f049ed6f1ede44a0bf3b243a246e00bef14165257"
+    },
+    {
+      "arquivo": "deploy/hostinger/transfer_sendgrid.py",
+      "bytes": 1837,
+      "sha256": "301d2da574c2f1b61ea4d011dcba154afa63bb1674b139ed8e70e07963d33a37"
+    },
+    {
+      "arquivo": "deploy/hostinger/verify_database.py",
+      "bytes": 1054,
+      "sha256": "5268fc2654114514b042788f4751e7c8dee98a1c6486b5c30ca47fe7c01cf95b"
+    },
+    {
+      "arquivo": "edutrack-api/.env.example",
+      "bytes": 1141,
+      "sha256": "23619135be10412671b3cbd3282f0df6499c88bebdde5811c561715965b28787"
+    },
+    {
+      "arquivo": "edutrack-api/.gitignore",
+      "bytes": 126,
+      "sha256": "89be12093fc1d9ac41b1545cd29a31fe1c28c54b91eb992d3cfd47f2c8b19d04"
+    },
+    {
+      "arquivo": "edutrack-api/docs/openapi.json",
+      "bytes": 67852,
+      "sha256": "e77753e3c94357b6368652cf3c839c49517fbc2b4aa86e4bfff190702137a976"
+    },
+    {
+      "arquivo": "edutrack-api/docs/TESTES_SQLSERVER.md",
+      "bytes": 4579,
+      "sha256": "709ab8467f7c440bb9fa29b3aa48ab0dbf0576c7aa20c82f0bef94f8aa121794"
+    },
+    {
+      "arquivo": "edutrack-api/docs/VALIDACAO.md",
+      "bytes": 2925,
+      "sha256": "838bfcbd44e9c9350090e6ec74484c4fcdbf37a9421a9cc7359f3be4b5d679a0"
+    },
+    {
+      "arquivo": "edutrack-api/edutrack/__init__.py",
+      "bytes": 40,
+      "sha256": "e1b97699c307e650d19ead982098972c8b2de89dfb2a2b6fbe03818e0b5f5bec"
+    },
+    {
+      "arquivo": "edutrack-api/edutrack/admin_access.py",
+      "bytes": 2133,
+      "sha256": "ea27d4ebba711dcc5a28be8cbf42b3dd7866cca6f32dec0c8fd7485b1148df74"
+    },
+    {
+      "arquivo": "edutrack-api/edutrack/agent.py",
+      "bytes": 7045,
+      "sha256": "b11a234f251fa4a9ee8523241ae848209763781893489f3715a154a947921786"
+    },
+    {
+      "arquivo": "edutrack-api/edutrack/ai_routes.py",
+      "bytes": 1958,
+      "sha256": "b1348852c813773344589a31b54cccac0d595adb5efd6b0502b774402476b4a7"
+    },
+    {
+      "arquivo": "edutrack-api/edutrack/config.py",
+      "bytes": 3948,
+      "sha256": "e8607c2c88f05d766c75accb8d67068863e0113caf09ef6b088f502806c0d59a"
+    },
+    {
+      "arquivo": "edutrack-api/edutrack/cpf.py",
+      "bytes": 606,
+      "sha256": "216a21441e2f78f251045bdf1f8d508e8e3f54b66559eed5e3be087d0dd3de4e"
+    },
+    {
+      "arquivo": "edutrack-api/edutrack/database.py",
+      "bytes": 1110,
+      "sha256": "80618acd5588d01f64b93e93a4f173f8d5b949d4807a3a43a602ebbe1f5a238c"
+    },
+    {
+      "arquivo": "edutrack-api/edutrack/email_delivery.py",
+      "bytes": 2442,
+      "sha256": "07ec9147bee73956b2b699f7d34ceae4cb726bcee999199b7392812a1bb61a09"
+    },
+    {
+      "arquivo": "edutrack-api/edutrack/email_verification.py",
+      "bytes": 6858,
+      "sha256": "689708e374fde5ef1ded68f8e24f1b19d64a49cab30e5ba72378e2d22be23a6a"
+    },
+    {
+      "arquivo": "edutrack-api/edutrack/main.py",
+      "bytes": 7664,
+      "sha256": "ad056ab53b904ce88ccd70a951a7758084d810e131680dacf6410b27836668a0"
+    },
+    {
+      "arquivo": "edutrack-api/edutrack/models.py",
+      "bytes": 6736,
+      "sha256": "8d0572f849494b6a3e2a5212c4114dc835342ada8000ab21440ca88cc077cec7"
+    },
+    {
+      "arquivo": "edutrack-api/edutrack/password_reset.py",
+      "bytes": 5392,
+      "sha256": "74f281c31ac24a8f92c17c7ef10f97f7d330d97603f1110c34b0c7792d8fe0e2"
+    },
+    {
+      "arquivo": "edutrack-api/edutrack/planning.py",
+      "bytes": 3663,
+      "sha256": "6178996000e92fca8fbf6b74413b096b5229f8df7d5cdb348ba409667419c334"
+    },
+    {
+      "arquivo": "edutrack-api/edutrack/repository.py",
+      "bytes": 1161,
+      "sha256": "77c126cfe14cccbfbb37efd665d1559ad625b7af2b50c229e1b6610f145041d5"
+    },
+    {
+      "arquivo": "edutrack-api/edutrack/routes.py",
+      "bytes": 12039,
+      "sha256": "b7060ea4622743a286708cbc6d4ce453cb550c38ad049d379f7854dda3b82bc9"
+    },
+    {
+      "arquivo": "edutrack-api/edutrack/run.py",
+      "bytes": 1473,
+      "sha256": "55e9c894f9f9d0c70f402a05e952c7e1442c1af0fa841b2e98c89c03d3f224b3"
+    },
+    {
+      "arquivo": "edutrack-api/edutrack/schemas.py",
+      "bytes": 6242,
+      "sha256": "e16094e77bfaf604ff4f5e19c384323d085092576106f589029dfeb8e643694d"
+    },
+    {
+      "arquivo": "edutrack-api/edutrack/security.py",
+      "bytes": 4327,
+      "sha256": "41461bfddd35ff1d7f69759ceb609cdf6f5806882cfed8e0c4a004a5195e810f"
+    },
+    {
+      "arquivo": "edutrack-api/edutrack/sql_expressions.py",
+      "bytes": 1123,
+      "sha256": "d4120e37e2edffeeef00a1544ef88d71759369bc925caca006c232da9bfc1a12"
+    },
+    {
+      "arquivo": "edutrack-api/edutrack/study_context.py",
+      "bytes": 1699,
+      "sha256": "7fccad0649e26b14e75e539d40c25f9a89c23338285237b0f0d8e7f42ff16647"
+    },
+    {
+      "arquivo": "edutrack-api/migrations/000_schema_completo_banco_vazio.sql",
+      "bytes": 4856,
+      "sha256": "a3f54581c4daf2ab332a7d9b4a146845067b7dcf78a4c8edac62af912877ee57"
+    },
+    {
+      "arquivo": "edutrack-api/migrations/001_verificacoes_email.sql",
+      "bytes": 1150,
+      "sha256": "0111cb46c6cb8c1ca2db2f8384c0412eab5f7fe2c9a0b487ab319ec59ed92562"
+    },
+    {
+      "arquivo": "edutrack-api/migrations/002_perfis_administrador.sql",
+      "bytes": 1369,
+      "sha256": "85b08c2d966ce77e63f6032d38d04bbe38229ab16b34a6b55dad2eb57b297d63"
+    },
+    {
+      "arquivo": "edutrack-api/migrations/003_recuperacao_senha.sql",
+      "bytes": 967,
+      "sha256": "e78970f8643c658d87f5389a0d10c266d7ad7be9473bb31c17714f26b35b3ff1"
+    },
+    {
+      "arquivo": "edutrack-api/pyproject.toml",
+      "bytes": 825,
+      "sha256": "bdcddf3a157c1a46c09bc6fc66031bcff2857e9f252f263f628cd90d5efb5c62"
+    },
+    {
+      "arquivo": "edutrack-api/README.md",
+      "bytes": 14438,
+      "sha256": "1d0ed89815aba811de910c79a08908bc02740cb601f0ca86008910550610c473"
+    },
+    {
+      "arquivo": "edutrack-api/requirements.lock.txt",
+      "bytes": 795,
+      "sha256": "68117e99e6c5d77be3bc1055eae4cb6d3686b247378bd1d03e9afef19153fd37"
+    },
+    {
+      "arquivo": "edutrack-api/scripts/apply_password_reset_local.py",
+      "bytes": 2852,
+      "sha256": "a3226b0a1d631a07352058d5426dfcb41ee925c076489cc03ccee31c0c776565"
+    },
+    {
+      "arquivo": "edutrack-api/scripts/check_database.py",
+      "bytes": 2679,
+      "sha256": "bae0197c939c24b08fcdab84536328758c93d7b1dd395f4bd73c4ceb0d4baa72"
+    },
+    {
+      "arquivo": "edutrack-api/scripts/configure_ai.py",
+      "bytes": 1402,
+      "sha256": "32d69115953a3aa29754a517908b73e96bd25a459a21d0552e25e84955b48418"
+    },
+    {
+      "arquivo": "edutrack-api/scripts/configure_local_email.py",
+      "bytes": 5773,
+      "sha256": "b9793f285b5f16f02461b71b73df85d0ae95eeb22d541f0366d0d5716a2f88d4"
+    },
+    {
+      "arquivo": "edutrack-api/scripts/export_schema.py",
+      "bytes": 4550,
+      "sha256": "63f225ab1280e850c6c239e81a110aea0abba671cfa001d1e3f18c62450344d8"
+    },
+    {
+      "arquivo": "edutrack-api/scripts/prepare_admin.py",
+      "bytes": 2374,
+      "sha256": "7c68154e1f58d7bc493f416835159de5d29f4e1f8677442defff4cccc86a43e3"
+    },
+    {
+      "arquivo": "edutrack-api/scripts/prepare_delivery.py",
+      "bytes": 3892,
+      "sha256": "75eed6c71e3fa30e4ce9c072f7712d2e50e800979843875c7d1103583962bef5"
+    },
+    {
+      "arquivo": "edutrack-api/scripts/test_frontend_http.py",
+      "bytes": 8325,
+      "sha256": "4ac40622dbd0f6bbbf76cb5be9a168f7e50dfc04a38d4345c374f02967aa0912"
+    },
+    {
+      "arquivo": "edutrack-api/scripts/test_sqlserver_integration.py",
+      "bytes": 19605,
+      "sha256": "69109fd41b6833da45d434c34d2610959a1a46269aa1d18088cea5a118399b76"
+    },
+    {
+      "arquivo": "edutrack-api/tests/conftest.py",
+      "bytes": 2530,
+      "sha256": "9815938d3b5a16bcc8aea9dd40fb927eaf32f340c5908b3c7897eb5b24c676de"
+    },
+    {
+      "arquivo": "edutrack-api/tests/preview_app.py",
+      "bytes": 3394,
+      "sha256": "c5e209a3ba06612b0ea80a254af234a20b93bd4abcaf785aa3df0a8dfc7b8c47"
+    },
+    {
+      "arquivo": "edutrack-api/tests/test_admin.py",
+      "bytes": 6522,
+      "sha256": "fc951b123b0e47e8a1ebd956fd42d1fbb258a2ea6d3a3381be8e190606287270"
+    },
+    {
+      "arquivo": "edutrack-api/tests/test_agent.py",
+      "bytes": 6271,
+      "sha256": "7351726d40cb8d816667000984e70ab553c053772db3d42ed16c05b70414edad"
+    },
+    {
+      "arquivo": "edutrack-api/tests/test_api.py",
+      "bytes": 9561,
+      "sha256": "8202651f982def1a4fd285be9046ecd0d652e69cabae7bd4e3910b9ec3f4f6af"
+    },
+    {
+      "arquivo": "edutrack-api/tests/test_computed_duration.py",
+      "bytes": 2325,
+      "sha256": "590cf64ab429dff07c48086ad1e65285c7fae79c2a956e79543e3a34853bcf32"
+    },
+    {
+      "arquivo": "edutrack-api/tests/test_email_verification.py",
+      "bytes": 7136,
+      "sha256": "033f0249a5d92e94884e4b46caf8aaef8a46efa0e370e5eb8cf6819adad83df6"
+    },
+    {
+      "arquivo": "edutrack-api/tests/test_frontend_contract.py",
+      "bytes": 2923,
+      "sha256": "1c4537af186c9ea10c06ef7dcf88a28ae7d4dd7661342a1d0b8f271ed7f5cddc"
+    },
+    {
+      "arquivo": "edutrack-api/tests/test_guards.py",
+      "bytes": 3508,
+      "sha256": "a11396dbe7c21058a59e55abd9b228c15f8cd446602738687a9ea1205c873e0b"
+    },
+    {
+      "arquivo": "edutrack-api/tests/test_local_secrets.py",
+      "bytes": 903,
+      "sha256": "6f5b71ea47c5d23381372930f5e47fda8467ddef66d4fb3fbac8df378ec2e20d"
+    },
+    {
+      "arquivo": "edutrack-api/tests/test_password_reset.py",
+      "bytes": 5373,
+      "sha256": "8b63016b09cecc2f13da27bc8cdc7ec6e4ac758c8bceeb913b4cc78b4f5482e1"
+    },
+    {
+      "arquivo": "edutrack-app-completo/.env.example",
+      "bytes": 330,
+      "sha256": "bffa0dc0e8dea635652249ea717139db9ba9a63af2c08180e77fec50bf06950a"
+    },
+    {
+      "arquivo": "edutrack-app-completo/.gitignore",
+      "bytes": 449,
+      "sha256": "00f6786c2271d9592a739119f89468de5a4281fe7ca4a4be29b66c1aca3481cf"
+    },
+    {
+      "arquivo": "edutrack-app-completo/.openai/hosting.json",
+      "bytes": 91,
+      "sha256": "36f700c2926302ed6d9fae6017ac60e545b0369ccb3e0556de493ec7449cfb84"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/[...slug]/page.tsx",
+      "bytes": 111,
+      "sha256": "bf609d2f21b52fe39e3d247efdf1ab911602ec1166f3da4cf865a4d24d0c004d"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/api/backend/[...path]/route.ts",
+      "bytes": 316,
+      "sha256": "8320321d2942abb9f6e070840ebbbd9b696f720357619af3bf62441ec70e6a7d"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/api/edu-ia/route.ts",
+      "bytes": 364,
+      "sha256": "532b44f91a3155d0ae3589c19239f73dafbc23d059b1b338f8981d406fff59ae"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/connected.css",
+      "bytes": 5919,
+      "sha256": "bdadf844fd3ae31c032dfb511dec815bd74dc2a40bbfc6bcc114648b63adc0a7"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/globals.css",
+      "bytes": 105205,
+      "sha256": "54aff36e1802e1beeb4585c474a93164b6d2ce047778844496d35aff14f8991c"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/layout.tsx",
+      "bytes": 1686,
+      "sha256": "3ed0d412fb930841689118ba1d7f46120aec1b6366feacd8e096c1b877e187e1"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/lib/academic-api.ts",
+      "bytes": 5796,
+      "sha256": "980cf44f3b1547898f8dff922d01f41cd14dd478fe5bb457e4357bc568209a4b"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/lib/academic-types.ts",
+      "bytes": 2033,
+      "sha256": "e8c58d68890f15f7e7631476a34eafd8a9526f75bdcc33cd55806c981b05747f"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/lib/backend-proxy.ts",
+      "bytes": 8045,
+      "sha256": "09098223457c4de310451148332949a319c93652cb8835947453c003328522aa"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/lib/course-deletion.ts",
+      "bytes": 1261,
+      "sha256": "e3bd8945e52740719a86a6850d68dc59cc118f07c868f24317ad5baa7413d22f"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/lib/cpf.ts",
+      "bytes": 1219,
+      "sha256": "b68c20dbf3a6c5f92642986bbc718dd3e37bccc4ae6e2ea58961697cda5244b3"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/lib/study-game.ts",
+      "bytes": 6085,
+      "sha256": "e7fdf97e33948c38b71707fd4457a3bcc95a8250b3749f36d14f5d29d314d5ab"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/lib/study-navigation.ts",
+      "bytes": 870,
+      "sha256": "a88d8fa39635032dc534e346e206b5080220805ae70c8dcde9e892eae58db762"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/lib/weekly-report.ts",
+      "bytes": 1591,
+      "sha256": "cbf99468ba2d38b06eb0900f07c11f2a632d6b2bd15701a2a4696f83ac9c6e67"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/page.tsx",
+      "bytes": 94,
+      "sha256": "46a6cb83d7f08b52672e0bdba7b5189b250d83e7e15bb4ac9fc0a42edc45e9dc"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/study-activity.css",
+      "bytes": 6572,
+      "sha256": "49d8de8e95c94fef7a75523168a7ec0b0931326f19c2acd222505013240618bb"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/study-game.css",
+      "bytes": 14601,
+      "sha256": "7729397bb1a8f8375ce3b6b1827162d5e2ea42eb48f3024d35885fd7e839e43b"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/ui/Brand.tsx",
+      "bytes": 1287,
+      "sha256": "05f3a2bfdddf6363dde5e5b0bb0d996f6c2716a187523b1ce945a2d8f0e1b379"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/ui/ConnectedAdmin.tsx",
+      "bytes": 3537,
+      "sha256": "c5fb07563b382f97febb355b6a69360842a0906ec4e2b41a0ae7baf9b9dff4e3"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/ui/ConnectedAuth.tsx",
+      "bytes": 10091,
+      "sha256": "2a70275b36acf1e391410e5ca1b211f5dac700898d180b7ef527f231400de95d"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/ui/ConnectedEditModal.tsx",
+      "bytes": 8378,
+      "sha256": "c989fd7994e029788cc635606d503d6fdbcf3ce7feb8be3e418df3f0daf9ebac"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/ui/ConnectedEduAI.tsx",
+      "bytes": 6683,
+      "sha256": "b45c6f62009008106c1dc6f04cc40443c3da8729d8cf5aa97cab95dbb96fea03"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/ui/EditModal.tsx",
+      "bytes": 12078,
+      "sha256": "34847802bd05ad75d86bcbee696bd5f61669b6aebd81821b26e9284b92edf6c8"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/ui/EduTrackApp.tsx",
+      "bytes": 17213,
+      "sha256": "c4bda67c08e242af46686cfac4a8a569816fe27b6d8dfffe8eab798bfcba06ca"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/ui/EduTrackViews.tsx",
+      "bytes": 41696,
+      "sha256": "65bd8da2104ee502457be5697aeb23f1c0c85aa88d53ecc8700ade8447c96acb"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/ui/FocusGarden.tsx",
+      "bytes": 8584,
+      "sha256": "030bda712a96798b779a26da545caea5f68ab0f6f39e6bc1cf78711da225de8f"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/ui/PasswordRecovery.tsx",
+      "bytes": 5321,
+      "sha256": "f10eccb4c27c37d17c8c3a5fd29c3867cfec1d6d3302f7e72316f8b5dafd6b16"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/ui/StudyActivity.tsx",
+      "bytes": 8108,
+      "sha256": "0f4298aca11e8f21164f608e52ba27f0a697d63b599b75e411a71068a245a69b"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/ui/StudyStreak.tsx",
+      "bytes": 3935,
+      "sha256": "264ff9c6c920db1c92f84aee9d056109424131cf0d39aa483de150e0e2a376b2"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/ui/TutorialModal.tsx",
+      "bytes": 12953,
+      "sha256": "c5f97b4f63a6dc23b277a52f184392f46f32cd8ffec77c6371152cab3f0c361b"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/ui/useFocusClock.ts",
+      "bytes": 1048,
+      "sha256": "51a544ecdcfdf09b28730b5325ed07bd38be4f2af17f9779e2236c0b34866692"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/ui/useStudyRouter.ts",
+      "bytes": 898,
+      "sha256": "71744594f0cd4995edd1d9eb53fde0bfc7a0c5e0eda21aebf2aeb541fe2edd1f"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/ui/WeeklyReport.tsx",
+      "bytes": 4199,
+      "sha256": "db42fa488230858acd89fb95e62c4398d198047d68a729f90e7568aea056a4b9"
+    },
+    {
+      "arquivo": "edutrack-app-completo/app/ui/Welcome.tsx",
+      "bytes": 2585,
+      "sha256": "c7762428022eca4539fb4cc341b220e5308e3ceac46cda4a39cf89d7ea723385"
+    },
+    {
+      "arquivo": "edutrack-app-completo/docs/CALENDARIO-DE-ESTUDOS.md",
+      "bytes": 6708,
+      "sha256": "b561136bee764d41d0e40dd1d882cffad6e02f1264137dbbcfc67913c19db2cb"
+    },
+    {
+      "arquivo": "edutrack-app-completo/docs/DESEMPENHO.md",
+      "bytes": 2561,
+      "sha256": "ea827d4ab2ba9eb2a2e1a5f57781f335cb07a34bbfea352d0073d09d943c03ca"
+    },
+    {
+      "arquivo": "edutrack-app-completo/docs/FOCO-E-OFENSIVA.md",
+      "bytes": 2352,
+      "sha256": "c28d2f74d524d27faf2a8f8dfdc879ec7f9e0105c83ad768ad06145347aa1e78"
+    },
+    {
+      "arquivo": "edutrack-app-completo/docs/INTEGRACAO_EDU_IA.md",
+      "bytes": 1551,
+      "sha256": "466cddaef1736473d27a97a1a81df90bdc677f6a550b054ba9074d682d5979db"
+    },
+    {
+      "arquivo": "edutrack-app-completo/docs/NOVAS_FUNCIONALIDADES_E_API.md",
+      "bytes": 8567,
+      "sha256": "840b4b14f0ea9601ea5585e9d2cf2058ae0e37c61d287f71d3eb43bf71e6b0cf"
+    },
+    {
+      "arquivo": "edutrack-app-completo/eslint.config.mjs",
+      "bytes": 390,
+      "sha256": "57074593eb7cd45ce29f5308a654db0ec7c39743511da91c841d63864a673b86"
+    },
+    {
+      "arquivo": "edutrack-app-completo/next.config.ts",
+      "bytes": 374,
+      "sha256": "6ecafd5a4d58880b36438b74b83b40deacfde636d30140f830a409fb76fb3e73"
+    },
+    {
+      "arquivo": "edutrack-app-completo/openspec/changes/archive/.gitkeep",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "arquivo": "edutrack-app-completo/openspec/changes/finalizar-avaliacao/proposal.md",
+      "bytes": 1280,
+      "sha256": "6a29c504ec56887a966529636e6bd98f9fb03037e3706759604602fb715e5bef"
+    },
+    {
+      "arquivo": "edutrack-app-completo/openspec/changes/finalizar-avaliacao/specs/autenticacao/spec.md",
+      "bytes": 1059,
+      "sha256": "4ec5f97379ccbc2dbb816ff7a850b095a8a17ec6cf49a5eb7fe902365d22246e"
+    },
+    {
+      "arquivo": "edutrack-app-completo/openspec/changes/finalizar-avaliacao/specs/relatorios/spec.md",
+      "bytes": 1439,
+      "sha256": "de95f42983d5ba714850292b0d91363b5eb15282d818371e58ca1e0e499b457e"
+    },
+    {
+      "arquivo": "edutrack-app-completo/openspec/changes/finalizar-avaliacao/tasks.md",
+      "bytes": 1399,
+      "sha256": "d504a667c507cde69f7828c061492a4fd3e9ad632caa629bb6f204348addeace"
+    },
+    {
+      "arquivo": "edutrack-app-completo/openspec/config.yaml",
+      "bytes": 2792,
+      "sha256": "5be11474d5c19cd0cc7ed2e95ed51821c614e11be0627b2e89d9fd8737f422fe"
+    },
+    {
+      "arquivo": "edutrack-app-completo/openspec/specs/.gitkeep",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "arquivo": "edutrack-app-completo/openspec/specs/administracao/spec.md",
+      "bytes": 1731,
+      "sha256": "4d4c3e7c616b778ff5e4a7ace730e841b239efa8b86effda58ceafdba2b909b5"
+    },
+    {
+      "arquivo": "edutrack-app-completo/openspec/specs/autenticacao/spec.md",
+      "bytes": 2622,
+      "sha256": "e363b1936fb9d6c5643905218e61ce9d7fb51b4ca1767805b29160a1626d2b0e"
+    },
+    {
+      "arquivo": "edutrack-app-completo/openspec/specs/calendario-de-estudos/spec.md",
+      "bytes": 3697,
+      "sha256": "a959918f6fd66c142386ab7fa2d96eeaa1934e47eb87e9c7e7925ff136cacb51"
+    },
+    {
+      "arquivo": "edutrack-app-completo/openspec/specs/edu-ia/spec.md",
+      "bytes": 1286,
+      "sha256": "6eb61aeb83f427677d476dd898bdc0b053bc251050698a0d36eec2c61c7242d2"
+    },
+    {
+      "arquivo": "edutrack-app-completo/openspec/specs/organizacao-academica/spec.md",
+      "bytes": 1879,
+      "sha256": "8caa59f47a269d1b9f76136c673041692f4a497e1c1cc6280eee07d937548fec"
+    },
+    {
+      "arquivo": "edutrack-app-completo/openspec/specs/relatorios/spec.md",
+      "bytes": 1565,
+      "sha256": "935fe616da0c6c9b28223b4f8f761a8a986b224cabce3fcf600e34a05dc57eab"
+    },
+    {
+      "arquivo": "edutrack-app-completo/package.json",
+      "bytes": 1398,
+      "sha256": "df27e9c3e7a3cb9f7372cb4b7b1eaab23f39a821165c462f58b100eb90836442"
+    },
+    {
+      "arquivo": "edutrack-app-completo/pnpm-lock.yaml",
+      "bytes": 230021,
+      "sha256": "33d6842381426d3151fba1af0043521cb69333d44517323ee510f736974ef68a"
+    },
+    {
+      "arquivo": "edutrack-app-completo/pnpm-workspace.yaml",
+      "bytes": 516,
+      "sha256": "2e935afe6459acb0748171879c6abd4082a7ad8979d46a9136f1f9b32016d058"
+    },
+    {
+      "arquivo": "edutrack-app-completo/public/_headers",
+      "bytes": 324,
+      "sha256": "6203f3ff5304b33ca1c610694459aeaca85198fa52e35ff303993aeea7b3aada"
+    },
+    {
+      "arquivo": "edutrack-app-completo/public/edutrack-academic-hero-small-v2.webp",
+      "bytes": 47806,
+      "sha256": "9d9c15324a30a7b91294878644186b40b0da49ebb681d7557c5ad8722bda4623"
+    },
+    {
+      "arquivo": "edutrack-app-completo/public/edutrack-academic-hero-v2.webp",
+      "bytes": 123860,
+      "sha256": "450b4c267108d0e66dc125c326fb3ad1f49f5488c161588bb5fea66ef2285457"
+    },
+    {
+      "arquivo": "edutrack-app-completo/public/edutrack-academic-hero.png",
+      "bytes": 1073212,
+      "sha256": "6bdfc6cf513cbc90dcd291069be6f6c8be5e9c6519fb901b0d1c2928de09c45a"
+    },
+    {
+      "arquivo": "edutrack-app-completo/public/favicon.svg",
+      "bytes": 712,
+      "sha256": "e6d2e59b7b5bbb0342e0fb496dfc262decbfe4426bbb7b047aec8d467d1dc6f7"
+    },
+    {
+      "arquivo": "edutrack-app-completo/public/og.png",
+      "bytes": 1000863,
+      "sha256": "0cbae89319132dc98765ab1238c17e0adaa5b1c68be17cfb4c108fcda34af672"
+    },
+    {
+      "arquivo": "edutrack-app-completo/README.md",
+      "bytes": 3081,
+      "sha256": "7fd0b1edc53152d3ae758a16e0bc7338e4f256c327d369499ed2ac01edbac814"
+    },
+    {
+      "arquivo": "edutrack-app-completo/scripts/start-hostinger.mjs",
+      "bytes": 1198,
+      "sha256": "5d4712c71e7ff60f2c6efb6549c39264da196496478441aeabf8ef09ddfa4f4f"
+    },
+    {
+      "arquivo": "edutrack-app-completo/scripts/start-local.mjs",
+      "bytes": 5519,
+      "sha256": "6b3ecf6bd5981d756f1cf7e8a6b107207594c207eef8e6c10cada9b6881e063c"
+    },
+    {
+      "arquivo": "edutrack-app-completo/tests/backend-proxy.test.mjs",
+      "bytes": 7774,
+      "sha256": "b47e897a1fb3b26d94bbb7b36814452cff3b93d202e1873f3fa93dfd70a0d972"
+    },
+    {
+      "arquivo": "edutrack-app-completo/tests/course-deletion.test.mjs",
+      "bytes": 2378,
+      "sha256": "bf23f6299cd95ec20965431ff98e54d66c6a3fafa91af6f9f6eb779602e73aa6"
+    },
+    {
+      "arquivo": "edutrack-app-completo/tests/cpf.test.mjs",
+      "bytes": 1477,
+      "sha256": "51c0d7ec5ab8b8f1adc78c225a440de36d55d0d02a062999f41a9474adee4bb4"
+    },
+    {
+      "arquivo": "edutrack-app-completo/tests/study-calendar.test.mjs",
+      "bytes": 7964,
+      "sha256": "d2c310c5154b4dcd88ecdf797156d3354bd03420b864f8184cec9e021611ac65"
+    },
+    {
+      "arquivo": "edutrack-app-completo/tests/study-game.test.mjs",
+      "bytes": 2642,
+      "sha256": "175870bbef9f27ce1287a1593dca8bb6a81887237fdffb3c26f8d480c3aa627f"
+    },
+    {
+      "arquivo": "edutrack-app-completo/tests/study-navigation.test.mjs",
+      "bytes": 1240,
+      "sha256": "57721473c720a7657f6864c3cf5424b6039cb948d006ff55a513a559785af4a2"
+    },
+    {
+      "arquivo": "edutrack-app-completo/tests/visual-study-activity/index.html",
+      "bytes": 355,
+      "sha256": "03983e99fff92e6c7ed23685365dabaf02744757c0663cb4c97a187ed45de42d"
+    },
+    {
+      "arquivo": "edutrack-app-completo/tests/visual-study-activity/main.tsx",
+      "bytes": 3031,
+      "sha256": "c9b83ab245377cc5ca524c6c6a048fc67c72d7cda21f40735d63984f28163148"
+    },
+    {
+      "arquivo": "edutrack-app-completo/tests/visual-study-activity/vite.config.mjs",
+      "bytes": 577,
+      "sha256": "aa47131d2ac16f5850b4dc8499e9719721568df1f94c0a16a6d272e1240ee981"
+    },
+    {
+      "arquivo": "edutrack-app-completo/tests/weekly-report.test.mjs",
+      "bytes": 1729,
+      "sha256": "ffe813aafba0bc92a9a2a9b48a393a870d30265a504d9326f901bde62ef142a9"
+    },
+    {
+      "arquivo": "edutrack-app-completo/tsconfig.json",
+      "bytes": 927,
+      "sha256": "3ba1e2bde5776a7d6de8f0ec1f818b9efcc345f197997a6c0f5dc1d575bfd55b"
+    },
+    {
+      "arquivo": "edutrack-app-completo/vite.config.ts",
+      "bytes": 2089,
+      "sha256": "6e6f0248a0e98075b779951ef7aaec660bc98048330597a787acffe2ae285746"
+    },
+    {
+      "arquivo": "edutrack-documentacao/COMECE_AQUI.md",
+      "bytes": 6645,
+      "sha256": "41509922173eceda9b999da1a40daff857ec768c35eaf32190739cd43b743598"
+    },
+    {
+      "arquivo": "edutrack-documentacao/CPF_E_EMAIL.md",
+      "bytes": 7413,
+      "sha256": "5712133099c25d2e674558a8c035c50829d43524c9d7da1aa4401548b2eb9194"
+    },
+    {
+      "arquivo": "edutrack-documentacao/DICIONARIO_DE_DADOS.md",
+      "bytes": 5881,
+      "sha256": "97225f34e804b19cc0c2167dd116c18fe4284daccb82d5e9d205090e32ef8d91"
+    },
+    {
+      "arquivo": "edutrack-documentacao/DOCUMENTACAO.md",
+      "bytes": 3332,
+      "sha256": "d872b219423a34a5230def37b62a73cbeebddb513722a7fb5d6624dd51037ea0"
+    },
+    {
+      "arquivo": "edutrack-documentacao/ESTADO_ATUAL.md",
+      "bytes": 3177,
+      "sha256": "1632cfad06c341e676d7a3734335d184eb5e08a4fef352a10ab7166ecf14c828"
+    },
+    {
+      "arquivo": "edutrack-documentacao/evidencias/validacao-final/edu-ia-planejador.jpg",
+      "bytes": 155357,
+      "sha256": "abb8c0c03c3243c0c563a5d70182ed13690d7a9c519da04cce1521cb83530929"
+    },
+    {
+      "arquivo": "edutrack-documentacao/evidencias/validacao-final/hostinger-login.jpg",
+      "bytes": 54614,
+      "sha256": "b01fdf726ff335f0fc2bb058c8ceb0bc75612332609e8fdaef898256d782279a"
+    },
+    {
+      "arquivo": "edutrack-documentacao/evidencias/validacao-final/recuperacao-local.jpg",
+      "bytes": 55798,
+      "sha256": "d778242b92a466eb87e488771638cabf6627edaa7ea13b04da8399d9c1ee9f9e"
+    },
+    {
+      "arquivo": "edutrack-documentacao/evidencias/validacao-final/relatorios-desktop.jpg",
+      "bytes": 79843,
+      "sha256": "c171d8a7a1f08fca071c736eecfab3aecffb527eb9589de7ab21e44e6ead7452"
+    },
+    {
+      "arquivo": "edutrack-documentacao/evidencias/validacao-final/relatorios-mobile-dark.jpg",
+      "bytes": 44416,
+      "sha256": "1f15a041e0c41d719148151887b3a465569fd9e059fab718d2c8742a809911b0"
+    },
+    {
+      "arquivo": "edutrack-documentacao/evidencias/validacao-final/relatorios-mobile-light.jpg",
+      "bytes": 43839,
+      "sha256": "0ce5674c815592fdd7a95fdb9d25511cbf69a73f23bf950fae81f0b16c6f85e2"
+    },
+    {
+      "arquivo": "edutrack-documentacao/HOSTINGER.md",
+      "bytes": 4633,
+      "sha256": "5b08ea01c1a2287c5656d81258037d58c9149d88f2fd86fc3839ee7197b42db6"
+    },
+    {
+      "arquivo": "edutrack-documentacao/MODELO_DE_DADOS.md",
+      "bytes": 2777,
+      "sha256": "7489c5e7aed4d0fffc656fe7ffcc65fa11e75654eae0ab4aa14520f3d490aeda"
+    },
+    {
+      "arquivo": "edutrack-documentacao/PLANO_HOSTINGER.md",
+      "bytes": 4739,
+      "sha256": "159db611e2bc383f1fd661e18602bcc211ece124b5df89c75951f3d1edef411f"
+    },
+    {
+      "arquivo": "edutrack-documentacao/PUBLICACAO_HOSTINGER.md",
+      "bytes": 5184,
+      "sha256": "e87745a0c84b18fe02a1f4ae799ebb6046ea99534c976fd2300ea90878c7d206"
+    },
+    {
+      "arquivo": "edutrack-documentacao/RECUPERACAO_DE_SENHA.md",
+      "bytes": 2296,
+      "sha256": "b7972747aa755aadd47a7d8316fe5229b5e7b0be279b28fab5e9913c5e1807b5"
+    },
+    {
+      "arquivo": "edutrack-documentacao/ROTEIRO_AVALIACAO_FINAL.md",
+      "bytes": 4627,
+      "sha256": "c35210f233bcc66fe4a6e523c8036ceff6a7b559a82384cb8ea64fc7a7bcf886"
+    },
+    {
+      "arquivo": "edutrack-documentacao/TESTAR_APIS.md",
+      "bytes": 7752,
+      "sha256": "d98939ffb74d4b13806832cb28d7db30c6063a70b07b96170b90cebadf6eee0f"
+    },
+    {
+      "arquivo": "edutrack-documentacao/VALIDACAO_FINAL.md",
+      "bytes": 4609,
+      "sha256": "ad8bfaaed2dd0aa6a6e9da356a4f67f45e97f7da173da43fe1caf4ce281fabf6"
+    },
+    {
+      "arquivo": "EduTrack.code-workspace",
+      "bytes": 321,
+      "sha256": "ca333e4da394753a80d165ce25499ffede53ee86ea825d39fd3025e4ff26e4ee"
+    },
+    {
+      "arquivo": "Iniciar EduTrack.cmd",
+      "bytes": 80,
+      "sha256": "62fbfd397a2550cf9503fa33c2a1b07fa05b525342a71abeb088e63845e48076"
+    },
+    {
+      "arquivo": "README.md",
+      "bytes": 2842,
+      "sha256": "93a3ac567e4f538a4bd330b0c71199292f035c1bc0a98c0c059a713c26d85fef"
+    }
+  ],
+  "verificacao": "Lista permitida, exclusão de segredos locais e busca de padrões de credenciais; não substitui revisão humana."
+}

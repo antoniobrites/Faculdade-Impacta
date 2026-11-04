@@ -1,0 +1,8 @@
+{
+  "folders": [
+    { "name": "Frontend e OpenSpec", "path": "edutrack-app-completo" },
+    { "name": "API Python", "path": "edutrack-api" },
+    { "name": "Documentação", "path": "edutrack-documentacao" }
+  ],
+  "settings": { "files.exclude": { "**/__pycache__": true, "**/.next": true, "**/node_modules": true } }
+}
