@@ -5,6 +5,63 @@ import { academicView } from '../app/lib/academic-api.ts';
 
 const origin = 'http://localhost:3002';
 
+test('Busca e relatório privado preservam autenticação, parâmetros e bytes PDF', async () => {
+  const cookie = { Cookie: 'edutrack_session=abc.def.ghi' };
+  const unreachable = () => { throw new Error('Não deveria chamar a API'); };
+  for (const path of ['search/disciplines', 'reports/generate', 'reports/progress.pdf']) {
+    assert.equal((await proxyBackend(request(path), undefined, unreachable)).status, 401);
+  }
+  const searched = await proxyBackend(request('search/disciplines?q=SQL&overdue=true&url=https://example.com', 'GET', undefined, cookie), 'http://127.0.0.1:8000', async (url) => {
+    assert.equal(url.searchParams.get('q'), 'SQL'); assert.equal(url.searchParams.get('overdue'), 'true');
+    assert.equal(url.searchParams.has('url'), false); return Response.json({ items: [], total: 0 });
+  });
+  assert.equal(searched.status, 200);
+  const download = await proxyBackend(request('reports/progress.pdf', 'GET', undefined, cookie), 'http://127.0.0.1:8000', async () => new Response('%PDF-1.4\nconteudo-de-teste', { headers: { 'Content-Type': 'application/pdf' } }));
+  assert.equal(download.status, 200); assert.match(await download.text(), /^%PDF-/);
+  assert.equal(download.headers.get('cache-control'), 'no-store');
+  assert.match(download.headers.get('content-disposition'), /attachment/);
+  const invalid = await proxyBackend(request('reports/progress.pdf', 'GET', undefined, cookie), 'http://127.0.0.1:8000', async () => new Response('<html>erro</html>', { headers: { 'Content-Type': 'application/pdf' } }));
+  assert.equal(invalid.status, 502);
+  const denied = await proxyBackend(request('reports/progress.pdf', 'GET', undefined, cookie), 'http://127.0.0.1:8000', async () => Response.json({ detail: 'Expirou' }, { status: 401 }));
+  assert.equal(denied.status, 401); assert.match(denied.headers.get('set-cookie'), /Max-Age=0/);
+});
+
+test('Conteúdo da turma exige sessão e preserva apenas parâmetros permitidos', async () => {
+  const path = 'integrations/google/disciplines/12345678-1234-1234-1234-123456789012/content?tipo=material&offset=30&limit=30&url=https://example.com';
+  const unreachable = () => { throw new Error('Não deve acessar o backend'); };
+  assert.equal((await proxyBackend(request(path, 'GET'), undefined, unreachable)).status, 401);
+  const response = await proxyBackend(request(path, 'GET', undefined, { Cookie: 'edutrack_session=abc.def.ghi' }), 'http://127.0.0.1:8000', async (url, options) => {
+    assert.equal(url.searchParams.get('tipo'), 'material');
+    assert.equal(url.searchParams.get('offset'), '30');
+    assert.equal(url.searchParams.has('url'), false);
+    assert.equal(options.headers.Authorization, 'Bearer abc.def.ghi');
+    return Response.json({ items: [], total: 0 });
+  });
+  assert.equal(response.status, 200);
+  assert.equal((await proxyBackend(request(path.split('?')[0], 'DELETE', undefined, { Cookie: 'edutrack_session=abc.def.ghi' }), undefined, unreachable)).status, 404);
+});
+
+test('Classroom exige sessão e Origin sem relaxar o cookie nem abrir proxy arbitrário', async () => {
+  const cookie = { Cookie: 'edutrack_session=abc.def.ghi' };
+  const unreachable = () => { throw new Error('Não deve acessar o backend'); };
+  for (const path of ['start', 'callback', 'preview', 'import']) {
+    const route = 'integrations/google/' + path;
+    assert.equal((await proxyBackend(request(route, 'POST', {}), undefined, unreachable)).status, 401);
+    assert.equal((await proxyBackend(request(route, 'POST', {}, { ...cookie, Origin: 'https://accounts.google.com' }), undefined, unreachable)).status, 403);
+    const result = await proxyBackend(request(route, 'POST', { code: 'codigo-ficticio' }, cookie), 'http://127.0.0.1:8000', async (url, options) => {
+      assert.equal(url.pathname, '/api/' + route);
+      assert.equal(options.headers.Authorization, 'Bearer abc.def.ghi');
+      assert.equal(options.redirect, 'manual');
+      return Response.json({ ok: true });
+    });
+    assert.equal(result.status, 200);
+    assert.equal(result.headers.get('set-cookie'), null);
+  }
+  assert.equal((await proxyBackend(request('integrations/google/connection', 'DELETE', undefined, cookie), 'http://127.0.0.1:8000', async () => Response.json({ connected: false }))).status, 200);
+  assert.equal((await proxyBackend(request('integrations/google/token', 'POST', {}, cookie), undefined, unreachable)).status, 404);
+  assert.equal((await proxyBackend(request('integrations/google/callback', 'GET', undefined, cookie), undefined, unreachable)).status, 404);
+});
+
 test('origem canônica funciona atrás do proxy sem confiar em Forwarded do visitante', async () => {
   const upstream = async () => Response.json({ access_token: 'abc.def.ghi', expires_in: 1200, user: { id: '1' } });
   const req = new Request('http://localhost:3000/api/backend/auth/login', { method: 'POST', headers: { Origin: 'https://edutrack.example.com', 'Content-Type': 'application/json' }, body: '{}' });

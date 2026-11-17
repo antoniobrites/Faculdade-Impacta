@@ -19,6 +19,7 @@ const EditorModal = lazy(() => import('./ConnectedEditModal'));
 const FocusGarden = lazy(() => import('./FocusGarden'));
 const StudyStreak = lazy(() => import('./StudyStreak'));
 const EduAI = lazy(() => import('./ConnectedEduAI'));
+const Integrations = lazy(() => import('./ConnectedIntegrations'));
 const AdminPage = lazy(() => import('./ConnectedAdmin'));
 const emptyData: AcademicData = { courses: [], disciplines: [], tasks: [], sessions: [] };
 const errorText = (cause: unknown) => cause instanceof Error ? cause.message : 'Não foi possível concluir a operação.';
@@ -153,6 +154,7 @@ function ConnectedApp({ user, onUser, logout }: { user: ApiUser; onUser: (user: 
   else if (pathname === '/ofensiva') content = <StudyStreak sessions={sessions} navigate={navigate} />;
   else if (pathname === '/relatorios') content = <Views.ReportsPage disciplines={disciplines} sessions={sessions} />;
   else if (pathname === '/edu-ia') content = <EduAI />;
+  else if (pathname === '/integracoes') content = <Integrations courses={data.courses} onImported={refresh} />;
   else if (pathname === '/descobrir') content = <Views.DiscoverPage courses={courses} addCourse={(suggestion) => void addSuggestedCourse(suggestion)} />;
   else if (pathname === '/perfil') content = <Views.ProfilePage profile={profile} courses={courses} sessions={sessions} edit={() => setEditor({ kind: 'profile' })} />;
   else if (pathname === '/gerenciamento') content = <AdminPage key={user.role} role={user.role} navigate={navigate} />;

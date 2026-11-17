@@ -9,6 +9,24 @@ export class ApiError extends Error {
 let activeUser: string | null = null;
 export function setApiUser(id: string | null) { activeUser = id; }
 
+export async function progressReportPdf(): Promise<Blob> {
+  const requestUser = activeUser;
+  const link = await api<{ download_url: string }>('reports/generate');
+  if (link.download_url !== '/api/reports/progress.pdf') throw new Error('Caminho do relatório inválido.');
+  const response = await fetch('/api/backend/reports/progress.pdf', {
+    cache: 'no-store', credentials: 'same-origin',
+    headers: requestUser ? { 'X-EduTrack-User': requestUser } : {},
+  });
+  if (requestUser !== activeUser) throw new Error('A conta mudou. Gere o relatório novamente.');
+  if (!response.ok) {
+    if (response.status === 401) window.dispatchEvent(new Event('edutrack-session-expired'));
+    const error = await response.json().catch(() => null) as { detail?: unknown } | null;
+    throw new Error(typeof error?.detail === 'string' ? error.detail : 'Não foi possível gerar o PDF.');
+  }
+  if (!response.headers.get('content-type')?.includes('application/pdf')) throw new Error('Resposta do relatório inválida.');
+  return response.blob();
+}
+
 export async function api<T>(path: string, options: RequestInit = {}): Promise<T> {
   const requestUser = activeUser;
   const response = await fetch('/api/backend/' + path, {

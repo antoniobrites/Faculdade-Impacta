@@ -7,6 +7,7 @@ from fastapi import HTTPException
 from openai import APIError, OpenAI
 from pydantic import ValidationError
 
+from edutrack.gemini import GeminiClient
 from edutrack.planning import build_plan
 from edutrack.schemas import PlanInput
 
@@ -65,7 +66,7 @@ def require_ai(settings, consent: bool):
         )
     if not settings.ai_configured:
         raise HTTPException(
-            503, "IA não configurada. Defina OPENAI_API_KEY e OPENAI_MODEL somente no servidor."
+            503, "IA não configurada. Configure a chave e o modelo do provedor escolhido somente no servidor."
         )
 
 
@@ -100,7 +101,7 @@ def run_agent(settings, messages, context, fixed_plan: PlanInput | None = None, 
 
     owned_client = client is None
     if owned_client:
-        client = OpenAI(
+        client = GeminiClient(settings) if settings.ai_provider == "gemini" else OpenAI(
             api_key=settings.openai_api_key.get_secret_value(), timeout=30, max_retries=0
         )
     try:
@@ -114,7 +115,7 @@ def run_agent(settings, messages, context, fixed_plan: PlanInput | None = None, 
             else:
                 choice = "auto"
             response = client.responses.create(
-                model=settings.openai_model,
+                model=settings.gemini_model if settings.ai_provider == "gemini" else settings.openai_model,
                 instructions=instructions,
                 input=history,
                 tools=TOOLS,

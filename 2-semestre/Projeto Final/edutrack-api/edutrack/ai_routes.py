@@ -1,6 +1,7 @@
 from fastapi import APIRouter, HTTPException, Request
 
 from edutrack.agent import require_ai, run_agent
+from edutrack.gemini import GeminiClient
 from edutrack.planning import build_plan
 from edutrack.routes import Db, Student
 from edutrack.schemas import ChatInput, ChatMessage, ChatOutput, PlanInput, StudyPlan
@@ -13,9 +14,21 @@ def rate_limit(request, student):
     request.app.state.limiter.check("ai:" + str(student.id), 8, 60)
 
 
+def provider_limit(request):
+    # Limite compartilhado por processo; produção atual executa um worker.
+    request.app.state.limiter.check("ai-provider-global", 20, 60)
+
+
+def external_context(request, db, student):
+    return study_context(db, student.id, exclude_classroom=True)
+
+
 @router.get("/status")
 def status(request: Request, student: Student):
-    return {"configured": request.app.state.settings.ai_configured, "planejador_por_regras": True}
+    settings = request.app.state.settings
+    return {"configured": settings.ai_configured, "planejador_por_regras": True,
+            "provider": settings.ai_provider, "academic_context_allowed": settings.ai_context_allowed,
+            "classroom_sent_to_ai": False}
 
 
 @router.get("/context")
@@ -28,7 +41,16 @@ def chat(body: ChatInput, request: Request, db: Db, student: Student):
     rate_limit(request, student)
     settings = request.app.state.settings
     require_ai(settings, body.enviar_dados_ia)
-    academic_context = study_context(db, student.id)
+    if settings.ai_provider == "gemini" and not body.maior_de_idade:
+        raise HTTPException(422, "O uso do Gemini nesta aplicação exige confirmação de idade igual ou superior a 18 anos.")
+    provider_limit(request)
+    if settings.ai_provider == "gemini" and not settings.ai_context_allowed:
+        client = GeminiClient(settings)
+        try:
+            return client.general_chat(body.messages)
+        finally:
+            client.close()
+    academic_context = external_context(request, db, student)
     return run_agent(settings, body.messages, academic_context)
 
 
@@ -41,6 +63,12 @@ def plan(body: PlanInput, request: Request, db: Db, student: Student):
         return proposal
     settings = request.app.state.settings
     require_ai(settings, body.enviar_dados_ia)
+    if settings.ai_provider == "gemini" and not body.maior_de_idade:
+        raise HTTPException(422, "O uso do Gemini nesta aplicação exige confirmação de idade igual ou superior a 18 anos.")
+    if not settings.ai_context_allowed:
+        raise HTTPException(422, "Este Gemini está no modo de dúvidas gerais. Use o planejador local, que inclui suas atividades sem enviá-las ao provedor.")
+    provider_limit(request)
+    context = external_context(request, db, student)
     result = run_agent(
         settings,
         [ChatMessage(role="user", text="Crie e explique meu plano de estudos: " + body.objetivo)],

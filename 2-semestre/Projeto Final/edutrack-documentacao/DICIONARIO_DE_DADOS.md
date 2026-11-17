@@ -2,9 +2,9 @@
 
 Modelo alvo gerado do código, sem consultar valores de usuários. SQL Server; datas DATETIME2 seguem UTC.
 
-A versão final contém nove tabelas. `recuperacoes_senha` depende da migração 003; a existência no modelo não comprova aplicação no banco.
+O modelo alvo contém 14 tabelas. As tabelas Google dependem das migrações 004 e 005. A existência no modelo não comprova aplicação no banco; consulte ATIVACAO_INTEGRACOES.md para o estado de cada ambiente.
 
-CPF é validado e descartado. Senhas são armazenadas somente como hash Argon2; códigos de confirmação usam HMAC e tokens de recuperação usam SHA-256.
+CPF é validado e descartado. Senhas são armazenadas somente como hash Argon2; códigos de confirmação usam HMAC e tokens de recuperação usam SHA-256. Tokens Google e verificadores PKCE usam Fernet com vinculação ao usuário e chave independente do JWT.
 
 ## usuarios
 
@@ -19,6 +19,33 @@ CPF é validado e descartado. Senhas são armazenadas somente como hash Argon2; 
 | `atualizado_em` | `DATETIME2(3)` | Não | — |
 
 Restrições: role IN ('student', 'admin').
+
+## autorizacoes_google
+
+| Campo | Tipo SQL Server | Nulo | Chave / regra |
+|---|---|---|---|
+| `state_hash` | `VARCHAR(64)` | Não | PK |
+| `usuario_id` | `UNIQUEIDENTIFIER` | Não | UNIQUE; FK → usuarios.id |
+| `verifier_cifrado` | `VARCHAR(max)` | Não | — |
+| `expira_em` | `DATETIME2(3)` | Não | — |
+| `usado_em` | `DATETIME2(3)` | Sim | — |
+
+Restrições: .
+
+## conexoes_google
+
+| Campo | Tipo SQL Server | Nulo | Chave / regra |
+|---|---|---|---|
+| `usuario_id` | `UNIQUEIDENTIFIER` | Não | PK; FK → usuarios.id |
+| `google_sub` | `VARCHAR(128)` | Não | — |
+| `email` | `VARCHAR(255)` | Não | — |
+| `refresh_cifrado` | `VARCHAR(max)` | Não | — |
+| `versao` | `UNIQUEIDENTIFIER` | Não | — |
+| `conteudo_autorizado` | `BIT` | Não | — |
+| `criado_em` | `DATETIME2(3)` | Não | — |
+| `atualizado_em` | `DATETIME2(3)` | Não | — |
+
+Restrições: .
 
 ## convites_administrador
 
@@ -104,6 +131,28 @@ Restrições: .
 
 Restrições: carga_horaria IS NULL OR carga_horaria >= 0.
 
+## conteudos_classroom
+
+| Campo | Tipo SQL Server | Nulo | Chave / regra |
+|---|---|---|---|
+| `usuario_id` | `UNIQUEIDENTIFIER` | Não | FK → disciplinas.usuario_id; FK → usuarios.id |
+| `google_sub` | `VARCHAR(128)` | Não | — |
+| `turma_id` | `VARCHAR(128)` | Não | — |
+| `origem_id` | `VARCHAR(128)` | Não | — |
+| `tipo` | `VARCHAR(20)` | Não | — |
+| `disciplina_id` | `UNIQUEIDENTIFIER` | Não | FK → disciplinas.id |
+| `titulo` | `NVARCHAR(3000)` | Não | — |
+| `descricao` | `NVARCHAR(max)` | Não | — |
+| `topico` | `NVARCHAR(200)` | Não | — |
+| `url` | `NVARCHAR(max)` | Sim | — |
+| `anexos_json` | `NVARCHAR(max)` | Não | — |
+| `publicado_em` | `DATETIME2(3)` | Sim | — |
+| `id` | `UNIQUEIDENTIFIER` | Não | PK |
+| `criado_em` | `DATETIME2(3)` | Não | — |
+| `atualizado_em` | `DATETIME2(3)` | Não | — |
+
+Restrições: tipo IN ('atividade', 'material', 'aviso').
+
 ## tarefas_academicas
 
 | Campo | Tipo SQL Server | Nulo | Chave / regra |
@@ -120,7 +169,19 @@ Restrições: carga_horaria IS NULL OR carga_horaria >= 0.
 | `criado_em` | `DATETIME2(3)` | Não | — |
 | `atualizado_em` | `DATETIME2(3)` | Não | — |
 
-Restrições: minutos_estimados IS NULL OR minutos_estimados >= 0; status <> 'concluida' OR concluido_em IS NOT NULL; status IN ('pendente', 'em_andamento', 'concluida', 'cancelada').
+Restrições: status IN ('pendente', 'em_andamento', 'concluida', 'cancelada'); status <> 'concluida' OR concluido_em IS NOT NULL; minutos_estimados IS NULL OR minutos_estimados >= 0.
+
+## vinculos_classroom_disciplinas
+
+| Campo | Tipo SQL Server | Nulo | Chave / regra |
+|---|---|---|---|
+| `usuario_id` | `UNIQUEIDENTIFIER` | Não | FK → usuarios.id |
+| `google_sub` | `VARCHAR(128)` | Não | — |
+| `turma_id` | `VARCHAR(128)` | Não | — |
+| `disciplina_id` | `UNIQUEIDENTIFIER` | Sim | FK → disciplinas.id |
+| `id` | `UNIQUEIDENTIFIER` | Não | PK |
+
+Restrições: .
 
 ## registros_tempo_tarefa
 
@@ -131,6 +192,19 @@ Restrições: minutos_estimados IS NULL OR minutos_estimados >= 0; status <> 'co
 | `finalizado_em` | `DATETIME2(3)` | Sim | — |
 | `duracao_minutos` | `INTEGER` | Sim | Calculado: CASE WHEN finalizado_em IS NULL THEN NULL ELSE DATEDIFF(minute, iniciado_em, finalizado_em) END |
 | `criado_em` | `DATETIME2(3)` | Não | — |
+| `id` | `UNIQUEIDENTIFIER` | Não | PK |
+
+Restrições: .
+
+## vinculos_classroom_tarefas
+
+| Campo | Tipo SQL Server | Nulo | Chave / regra |
+|---|---|---|---|
+| `usuario_id` | `UNIQUEIDENTIFIER` | Não | FK → usuarios.id |
+| `google_sub` | `VARCHAR(128)` | Não | — |
+| `turma_id` | `VARCHAR(128)` | Não | — |
+| `atividade_id` | `VARCHAR(128)` | Não | — |
+| `tarefa_id` | `UNIQUEIDENTIFIER` | Sim | FK → tarefas_academicas.id |
 | `id` | `UNIQUEIDENTIFIER` | Não | PK |
 
 Restrições: .

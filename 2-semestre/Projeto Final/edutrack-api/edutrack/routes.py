@@ -7,9 +7,11 @@ from sqlalchemy import func, select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
+from edutrack.closed_access import DENIED, require_closed_access
 from edutrack.database import get_db, require_writes
 from edutrack.email_verification import require_verified
 from edutrack.models import Course, Discipline, Task, TimeEntry, User, utc_now
+from edutrack.progress import calculate_progress
 from edutrack.repository import commit, owned, page
 from edutrack.schemas import (
     CourseInput,
@@ -47,6 +49,8 @@ write = [Depends(require_writes)]
 )
 def register(body: Registration, request: Request, db: Db):
     settings = request.app.state.settings
+    if settings.closed_adult_access:
+        raise HTTPException(403, DENIED)
     if settings.email_verification_enabled and not settings.email_configured:
         raise HTTPException(503, "Cadastro indisponível até a configuração do envio de e-mails.")
     user = User(
@@ -74,6 +78,7 @@ def login(body: Login, request: Request, db: Db):
         raise HTTPException(
             401, "E-mail ou senha inválidos.", headers={"WWW-Authenticate": "Bearer"}
         )
+    require_closed_access(request, db, user)
     require_verified(request, db, user)
     return {
         "access_token": issue_token(request, user),
@@ -345,7 +350,7 @@ def dashboard(db: Db, student: Student):
         "tarefas_por_status": statuses,
         "total_tarefas": total_tasks,
         "minutos_estudados": minutes,
-        "progresso_percentual": round(statuses.get("concluida", 0) * 100 / total_tasks)
-        if total_tasks
-        else 0,
+        "progresso_percentual": calculate_progress(
+            statuses.get("concluida", 0), total_tasks - statuses.get("cancelada", 0)
+        )["percentage"],
     }

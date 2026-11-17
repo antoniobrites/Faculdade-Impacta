@@ -11,7 +11,15 @@ from zipfile import ZIP_DEFLATED, ZipFile
 ROOT = Path(__file__).resolve().parents[3]
 WORK = ROOT / "work"
 SKIP = {"__pycache__", "node_modules", ".git", ".venv", ".next", "dist", ".wrangler", ".pytest_cache", ".ruff_cache"}
-PATTERNS = [r"SG\.[A-Za-z0-9_-]{20,}\.[A-Za-z0-9_-]{30,}", r"sk-(?:proj-|svcacct-)?[A-Za-z0-9_-]{40,}", r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"]
+# A inspeção por padrões é uma defesa adicional; segredos ficam fora da lista de arquivos.
+PATTERNS = [
+    r"SG\.[A-Za-z0-9_-]{20,}\.[A-Za-z0-9_-]{30,}",
+    r"sk-(?:proj-|svcacct-)?[A-Za-z0-9_-]{40,}",
+    r"AIza[A-Za-z0-9_-]{35}",
+    r"\bAQ\.[A-Za-z0-9_.=+/-]{30,}",
+    r"GOCSPX-[A-Za-z0-9_-]{20,}",
+    r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----",
+]
 
 
 def files_under(source):
@@ -35,6 +43,8 @@ def main():
     selected += [(WORK / "edutrack-api" / name) for name in backend]
     selected += list((WORK / "edutrack-documentacao").glob("*.md"))
     selected.append(WORK / "edutrack-documentacao" / "evidencias" / "validacao-final")
+    selected.append(WORK / "edutrack-documentacao" / "evidencias" / "integracoes-2026-11-09")
+    selected.append(WORK / "edutrack-documentacao" / "evidencias" / "busca-turmas-2026-11-12")
     for source in selected:
         for path in files_under(source):
             destination = target / path.relative_to(WORK)
@@ -43,6 +53,10 @@ def main():
     delivery = WORK / "edutrack-documentacao" / "entrega"
     for path in files_under(delivery):
         destination = target / path.relative_to(delivery)
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(path, destination)
+    for path in files_under(WORK / "edutrack-documentacao" / "evidencias" / "classroom-completo-2026-11-12"):
+        destination = target / path.relative_to(WORK)
         destination.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(path, destination)
     findings = []

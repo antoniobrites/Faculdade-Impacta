@@ -67,3 +67,22 @@ O sistema SHALL permitir solicitar e concluir a recuperação de senha sem revel
 - **WHEN** um token de sessão emitido antes da redefinição é apresentado
 - **THEN** a API recusa a sessão, preservando os registros acadêmicos e o perfil da conta
 
+
+### Requirement: Acesso adulto fechado por aprovação
+
+O sistema SHALL disponibilizar um modo restrito a contas adultas previamente aprovadas, SHALL manter cadastro público fechado nesse modo e SHALL exigir e-mail confirmado e aprovação no servidor em cada acesso autenticado. Avisos ou autodeclarações na interface não SHALL substituir essa autorização.
+
+#### Scenario: Conta removida da lista
+
+- **WHEN** uma conta com sessão existente não pertence à lista aprovada
+- **THEN** as rotas autenticadas e integrações recusam o acesso sem apagar seus dados
+
+#### Scenario: Configuração restrita incompleta
+
+- **WHEN** o modo adulto fechado está habilitado sem lista válida ou com público incompatível
+- **THEN** o acesso falha fechado e o Gemini não é considerado configurado
+
+#### Scenario: Cadastro público fechado
+
+- **WHEN** o modo adulto fechado está ativo
+- **THEN** o servidor recusa cadastros e a interface orienta entrar com uma conta previamente autorizada, sem publicar a lista de usuários

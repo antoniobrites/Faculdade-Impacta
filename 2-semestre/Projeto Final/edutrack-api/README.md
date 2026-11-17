@@ -4,12 +4,14 @@ API em Python/FastAPI para o banco SQL Server `EduTrackIA`, com autenticação, 
 
 ## Estado real desta entrega
 
+Atualização de 09/11/2026: integração Classroom e adaptador Gemini implementados e testados localmente. Consulte [configuração e privacidade](../edutrack-documentacao/CLASSROOM_E_GEMINI.md) e [resultados atuais](../edutrack-documentacao/VALIDACAO_INTEGRACOES.md). São 122 testes de backend aprovados. A migração 004 ainda não foi aplicada; OAuth e Gemini reais dependem de credenciais e ativação. Os resultados históricos abaixo não representam a validação dessa nova integração.
+
 Atualização final: consulte [ESTADO_ATUAL.md](../edutrack-documentacao/ESTADO_ATUAL.md). Recuperação implementada e migração 003 aplicada localmente em 03/11/2026, com autorização. Resultados abaixo descrevem também etapas históricas; não são prova de publicação na Hostinger.
 
 Atualização local de CPF/e-mail: CPF validado e descartado no cadastro. Confirmação SendGrid ativada nesta máquina após migração autorizada, remetente verificado e chave restrita. O teste real recebeu HTTP 202 (aceito para envio, não comprovante de entrega). Veja [CPF_E_EMAIL.md](../edutrack-documentacao/CPF_E_EMAIL.md).
 
 - Implementados: cadastro, login, identificação do usuário, CRUD de cursos/disciplinas/tarefas, registro e consulta de sessões, resumo acadêmico, contexto do aluno e proposta de plano de estudo.
-- Agente implementado com ferramentas restritas de consulta e planejamento. Respostas reais dependem de `OPENAI_API_KEY` e `OPENAI_MODEL`; não há chave incluída.
+- Agente implementado com ferramentas restritas de consulta e planejamento. `EDUTRACK_AI_PROVIDER` seleciona OpenAI ou Gemini; cada provedor exige chave/modelo no backend. Gemini também exige ativação explícita e revisão do público/termos. Nenhuma chave está incluída no código.
 - Planejamento por regras funciona sem IA, com `origem: "regras"`. Não simula resposta de um modelo.
 - SQL Server foi validado com **83 verificações de integração**, após autorização: gravação, leitura, atualização, exclusão e isolamento de duas contas fictícias. Ao final, todos os dados de teste foram removidos e a estrutura e os dados foram comparados ao estado anterior, sem diferenças. Os **49 testes automatizados** usam SQLite descartável em memória e provedor de IA simulado; nenhuma chamada real ao modelo foi feita.
 - **O frontend local já consome esta API.** Login/cadastro, nome do perfil, CRUD acadêmico, cronômetro e planejamento estão conectados. Também passaram 52 verificações HTTP via proxy e uma conferência no Chrome. O site público continua inalterado.

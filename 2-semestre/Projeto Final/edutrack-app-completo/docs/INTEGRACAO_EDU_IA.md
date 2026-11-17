@@ -1,5 +1,7 @@
 # Integração da Edu IA
 
+> Documento histórico do protótipo. A versão conectada atual usa o BFF `/api/backend/edu-ia/*`, a API Python e contexto autorizado no servidor. Para configurar OpenAI/Gemini e consultar as restrições de dados do Classroom, use [CLASSROOM_E_GEMINI.md](../../edutrack-documentacao/CLASSROOM_E_GEMINI.md). Não aplique a configuração abaixo à versão atual sem verificar a arquitetura.
+
 O frontend chama somente a rota interna `POST /api/edu-ia`. As credenciais nunca devem ser colocadas em `EduTrackApp.tsx` ou enviadas ao navegador.
 
 ## Opção preferencial: API externa do projeto

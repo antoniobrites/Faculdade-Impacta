@@ -129,7 +129,7 @@ class DisciplineOut(DisciplineInput):
 class TaskInput(Contract):
     disciplina_id: UUID
     titulo: Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=200)]
-    descricao: str | None = Field(default=None, max_length=10000)
+    descricao: str | None = Field(default=None, max_length=30000)
     data_prevista: AwareDatetime | None = None
     status: TaskStatus = "pendente"
     minutos_estimados: int | None = Field(default=None, ge=0, le=100000)
@@ -177,6 +177,7 @@ class ChatMessage(Contract):
 
 
 class ChatInput(Contract):
+    maior_de_idade: bool = False
     messages: list[ChatMessage] = Field(min_length=1, max_length=10)
     enviar_dados_ia: bool = False
 
@@ -188,6 +189,7 @@ class ChatInput(Contract):
 
 
 class PlanInput(Contract):
+    maior_de_idade: bool = False
     data_inicio: date
     dias: int = Field(default=7, ge=1, le=14)
     minutos_por_dia: int = Field(default=60, ge=15, le=240)

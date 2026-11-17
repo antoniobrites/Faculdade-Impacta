@@ -10,12 +10,22 @@ from fastapi.responses import JSONResponse, RedirectResponse
 from sqlalchemy import select, text
 from sqlalchemy.exc import SQLAlchemyError
 
+from edutrack.academic_tools_routes import router as academic_tools_router
 from edutrack.admin_access import router as admin_router
 from edutrack.ai_routes import router as ai_router
 from edutrack.config import Settings
 from edutrack.database import make_engine, make_session_factory
 from edutrack.email_delivery import send_password_reset, send_verification
 from edutrack.email_verification import router as email_router
+from edutrack.google_classroom import GoogleClassroom
+from edutrack.integration_models import (
+    ClassroomContent,
+    ClassroomDisciplineLink,
+    ClassroomTaskLink,
+    GoogleConnection,
+    GoogleOAuthAttempt,
+)
+from edutrack.integration_routes import router as integrations_router
 from edutrack.models import AdminInvitation, EmailVerification, PasswordReset, User
 from edutrack.password_reset import router as reset_router
 from edutrack.routes import router
@@ -68,6 +78,7 @@ def create_app(settings: Settings | None = None, engine=None):
     app.state.limiter = RateLimiter()
     app.state.email_sender = send_verification
     app.state.password_reset_sender = send_password_reset
+    app.state.google_client_factory = GoogleClassroom
     if settings.environment != "production":
         @app.get("/swagger", include_in_schema=False)
         def swagger_alias():
@@ -115,17 +126,24 @@ def create_app(settings: Settings | None = None, engine=None):
             connection.execute(text("SELECT 1"))
             connection.execute(select(User.role).limit(0))
             connection.execute(select(AdminInvitation.email).limit(0))
-            if settings.email_verification_enabled:
+            if settings.email_verification_enabled or settings.closed_adult_access:
                 connection.execute(select(EmailVerification).limit(0))
             if settings.password_reset_enabled:
                 connection.execute(select(PasswordReset).limit(0))
+            if settings.classroom_enabled:
+                for model in (GoogleConnection, GoogleOAuthAttempt, ClassroomDisciplineLink, ClassroomTaskLink):
+                    connection.execute(select(model).limit(0))
+            if settings.classroom_full_import_enabled:
+                connection.execute(select(ClassroomContent).limit(0))
         return {"status": "ok"}
 
     app.include_router(router)
+    app.include_router(academic_tools_router)
     app.include_router(admin_router)
     app.include_router(email_router)
     app.include_router(reset_router)
     app.include_router(ai_router)
+    app.include_router(integrations_router)
     app.add_middleware(BodyLimitMiddleware)
     return app
 

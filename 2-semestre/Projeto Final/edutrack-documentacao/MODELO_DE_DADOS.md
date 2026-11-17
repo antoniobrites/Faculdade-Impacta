@@ -11,6 +11,14 @@ erDiagram
   usuarios ||--o| verificacoes_email : verifica
   usuarios o|--o{ convites_administrador : consome
   usuarios ||--o{ recuperacoes_senha : solicita
+  usuarios ||--o| conexoes_google : conecta
+  usuarios ||--o{ autorizacoes_google : autoriza
+  usuarios ||--o{ vinculos_classroom_disciplinas : importa
+  usuarios ||--o{ vinculos_classroom_tarefas : importa
+  disciplinas o|--o{ vinculos_classroom_disciplinas : origem
+  tarefas_academicas o|--o{ vinculos_classroom_tarefas : origem
+  usuarios ||--o{ conteudos_classroom : possui
+  disciplinas ||--o{ conteudos_classroom : contem
   usuarios ||--o{ relatorios_semanais : possui
   usuarios {
     NVARCHAR nome
@@ -18,6 +26,23 @@ erDiagram
     VARCHAR senha_hash
     VARCHAR role
     UNIQUEIDENTIFIER id PK
+    DATETIME2 criado_em
+    DATETIME2 atualizado_em
+  }
+  autorizacoes_google {
+    VARCHAR state_hash PK
+    UNIQUEIDENTIFIER usuario_id FK
+    VARCHAR verifier_cifrado
+    DATETIME2 expira_em
+    DATETIME2 usado_em
+  }
+  conexoes_google {
+    UNIQUEIDENTIFIER usuario_id PK
+    VARCHAR google_sub
+    VARCHAR email
+    VARCHAR refresh_cifrado
+    UNIQUEIDENTIFIER versao
+    BIT conteudo_autorizado
     DATETIME2 criado_em
     DATETIME2 atualizado_em
   }
@@ -75,6 +100,23 @@ erDiagram
     DATETIME2 criado_em
     DATETIME2 atualizado_em
   }
+  conteudos_classroom {
+    UNIQUEIDENTIFIER usuario_id FK
+    VARCHAR google_sub
+    VARCHAR turma_id
+    VARCHAR origem_id
+    VARCHAR tipo
+    UNIQUEIDENTIFIER disciplina_id FK
+    NVARCHAR titulo
+    NVARCHAR descricao
+    NVARCHAR topico
+    NVARCHAR url
+    NVARCHAR anexos_json
+    DATETIME2 publicado_em
+    UNIQUEIDENTIFIER id PK
+    DATETIME2 criado_em
+    DATETIME2 atualizado_em
+  }
   tarefas_academicas {
     UNIQUEIDENTIFIER disciplina_id FK
     UNIQUEIDENTIFIER usuario_id FK
@@ -88,12 +130,27 @@ erDiagram
     DATETIME2 criado_em
     DATETIME2 atualizado_em
   }
+  vinculos_classroom_disciplinas {
+    UNIQUEIDENTIFIER usuario_id FK
+    VARCHAR google_sub
+    VARCHAR turma_id
+    UNIQUEIDENTIFIER disciplina_id FK
+    UNIQUEIDENTIFIER id PK
+  }
   registros_tempo_tarefa {
     UNIQUEIDENTIFIER tarefa_id FK
     DATETIME2 iniciado_em
     DATETIME2 finalizado_em
     INTEGER duracao_minutos
     DATETIME2 criado_em
+    UNIQUEIDENTIFIER id PK
+  }
+  vinculos_classroom_tarefas {
+    UNIQUEIDENTIFIER usuario_id FK
+    VARCHAR google_sub
+    VARCHAR turma_id
+    VARCHAR atividade_id
+    UNIQUEIDENTIFIER tarefa_id FK
     UNIQUEIDENTIFIER id PK
   }
 ```
