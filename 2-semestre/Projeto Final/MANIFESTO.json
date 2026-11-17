@@ -1097,11 +1097,6 @@
       "sha256": "57074593eb7cd45ce29f5308a654db0ec7c39743511da91c841d63864a673b86"
     },
     {
-      "arquivo": "edutrack-app-completo/next-env.d.ts",
-      "bytes": 308,
-      "sha256": "717597c509e063d9658c34dee9d093bb892395650ac6b4b996e5f24425106edf"
-    },
-    {
       "arquivo": "edutrack-app-completo/next.config.ts",
       "bytes": 374,
       "sha256": "6ecafd5a4d58880b36438b74b83b40deacfde636d30140f830a409fb76fb3e73"
