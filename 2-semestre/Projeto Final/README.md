@@ -1,10 +1,20 @@
 # EduTrack — entrega acadêmica
 
-**Site publicado:** <https://srv1834976.hstgr.cloud>. O banco público é novo; crie sua conta no site. As contas locais não foram migradas.
+**Site de referência:** <https://srv1834976.hstgr.cloud>. A disponibilidade e o acesso dependem da configuração vigente no servidor. Esta documentação não autoriza cadastro público nem migra contas locais. A revisão das 16 tarefas está sendo preparada em branch própria; commits no GitHub não publicam automaticamente o site.
 
 Gestão de estudos com React/TypeScript, API Python/FastAPI e SQL Server. Este pacote contém código-fonte, testes, documentação Markdown, modelo de dados, SQL e OpenSpec. Não contém banco de alunos, credenciais ou dependências instaladas.
 
-## Estrutura
+## Tecnologias utilizadas
+
+- **Interface:** TypeScript, React, Next.js e Vinext; navegação responsiva e temas claro/escuro.
+- **API:** Python, FastAPI e OpenAPI/Swagger.
+- **Dados:** SQL Server e SQLAlchemy, com consultas restritas ao usuário autenticado.
+- **Qualidade:** pytest, Node test runner, Ruff, ESLint, TypeScript e OpenSpec.
+- **Versionamento:** Git e GitHub, com branches e Pull Requests.
+
+Xano/XanoScript e FlutterFlow dos enunciados são adaptados à arquitetura existente por decisão do aluno, sujeita à avaliação do professor. Consulte [a pesquisa de referências](docs/pesquisa/referencias.md).
+
+## Pastas do projeto
 
 | Pasta | Conteúdo |
 | --- | --- |
