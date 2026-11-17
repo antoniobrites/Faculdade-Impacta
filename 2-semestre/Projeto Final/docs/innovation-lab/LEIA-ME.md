@@ -21,3 +21,7 @@ O aluno autorizou manter SQL Server/Python e documentar as adaptações ao profe
 5. Mostre a busca, o relatório PDF e a evidência de CRUD.
 
 Nenhum trabalho foi entregue automaticamente no Classroom. A produção não foi atualizada por esta entrega.
+
+## Revisão no GitHub
+
+[PR final #2 — aberto para revisão do professor](https://github.com/antoniobrites/Faculdade-Impacta/pull/2). Código enviado na branch `codex/innovation-lab-16-tarefas`.

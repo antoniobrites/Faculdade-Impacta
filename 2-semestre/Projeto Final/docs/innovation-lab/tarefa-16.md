@@ -20,3 +20,7 @@ As propostas antigas ainda abertas são mantidas como histórico de pendências;
 - [Abrir referência](https://github.com/antoniobrites/Faculdade-Impacta/pulls)
 
 Consulte também o índice, a matriz de adaptações e os arquivos em `evidencias/` deste pacote.
+
+## Revisão no GitHub
+
+[PR final #2 — aberto para revisão do professor](https://github.com/antoniobrites/Faculdade-Impacta/pull/2). Código enviado na branch `codex/innovation-lab-16-tarefas`.

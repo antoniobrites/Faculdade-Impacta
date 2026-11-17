@@ -137,6 +137,11 @@
       "sha256": "dbc65a1224c6eabd2bdea14892b2f704a7066ccab981029bc2eb8750787e6720"
     },
     {
+      "arquivo": "docs/innovation-lab/evidencias/01-git-historico.png",
+      "bytes": 147160,
+      "sha256": "0825e58bee9a290950f9696b3916a8de595da2523de65a2826785d5e9f69efa3"
+    },
+    {
       "arquivo": "docs/innovation-lab/evidencias/05-pr-integrado.jpg",
       "bytes": 86058,
       "sha256": "862969f78c7547b1f064f5f6a5151afaba692750c2394a8d2845919217b29270"
@@ -185,6 +190,11 @@
       "arquivo": "docs/innovation-lab/evidencias/15-relatorios.jpg",
       "bytes": 57089,
       "sha256": "3bad2e51d6f45b52e56889eb47a9a5522eae7e6871383da9d1f4862811dc12ba"
+    },
+    {
+      "arquivo": "docs/innovation-lab/evidencias/16-pr-final.jpg",
+      "bytes": 94077,
+      "sha256": "48f15565f8ec848a02d33c4b65dd6467495708389af69730a7d2025576664b85"
     },
     {
       "arquivo": "docs/innovation-lab/evidencias/build-hostinger.txt",
@@ -248,8 +258,8 @@
     },
     {
       "arquivo": "docs/innovation-lab/LEIA-ME.md",
-      "bytes": 1429,
-      "sha256": "0762da9067557104998c83081793731c4ca4727c3312b76407bc3a1f210834ad"
+      "bytes": 1626,
+      "sha256": "cdf09063b8845c545e894c437f7d6131b9926af2dbcac6a7eaeb2580a369ef26"
     },
     {
       "arquivo": "docs/innovation-lab/LEITURA_AGENTS_IA.md",
@@ -263,8 +273,8 @@
     },
     {
       "arquivo": "docs/innovation-lab/RELATORIO_FINAL.pdf",
-      "bytes": 1035023,
-      "sha256": "085e113d1382736a3f52e65ab689218e79d6c1518017e1d8ffc50fbbf963b900"
+      "bytes": 1339203,
+      "sha256": "fa2aa5218eda31d379246c3657da20eebfb5c2499c00daf66b3664b3b99ca4ec"
     },
     {
       "arquivo": "docs/innovation-lab/resumo.json",
@@ -338,8 +348,8 @@
     },
     {
       "arquivo": "docs/innovation-lab/tarefa-14.md",
-      "bytes": 1525,
-      "sha256": "9f31e6277d571e766f9b36084be19705611c188b3b336afeaf70b13ee99a9e88"
+      "bytes": 1722,
+      "sha256": "04a252503cc1ce5fa1db3663145d349b5009912989970d243b5cc36bf0ecdeee"
     },
     {
       "arquivo": "docs/innovation-lab/tarefa-15.md",
@@ -348,8 +358,8 @@
     },
     {
       "arquivo": "docs/innovation-lab/tarefa-16.md",
-      "bytes": 1692,
-      "sha256": "ac4be6294a93db962164e70f1dc7fec51cc2d21006f6a18b446cafc37ad5029f"
+      "bytes": 1889,
+      "sha256": "e4b3d46423b3caeedab14d4d0f8aae0976bf2527cb684b309ee349dfec2e816a"
     },
     {
       "arquivo": "docs/innovation-lab/VALIDACAO.md",
@@ -1643,8 +1653,8 @@
     },
     {
       "arquivo": "README.md",
-      "bytes": 3999,
-      "sha256": "f34d6525ac34ee0a69e9890ae85affef564ccc26223dbec58705214d53641bcf"
+      "bytes": 4099,
+      "sha256": "05423d29c67403e983deb5f48bc01a85d64dd9265ed1c26fe96701a4f94a275f"
     }
   ],
   "nota": "Fontes revisadas e evidências fictícias; sem dependências, bancos de alunos ou segredos locais. Não comprova deploy."

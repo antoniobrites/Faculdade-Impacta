@@ -4,6 +4,7 @@ Gestão acadêmica com **React/TypeScript**, **Python/FastAPI**, **SQL Server** 
 Entrega de Innovation Lab preparada em **17/11/2026**, com 16 respostas, código e evidências.
 
 ## Comece por aqui
+- [PR final #2 — aberto para revisão](https://github.com/antoniobrites/Faculdade-Impacta/pull/2)
 - [Índice das 16 tarefas](docs/innovation-lab/LEIA-ME.md)
 - [Adaptações para avaliação](docs/innovation-lab/ADAPTACOES.md)
 - [Relatório final em PDF](docs/innovation-lab/RELATORIO_FINAL.pdf)

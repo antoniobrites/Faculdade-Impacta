@@ -18,3 +18,7 @@ A interface fica em Disciplinas → Busca avançada. Foram testados OR, múltipl
 - [edutrack-app-completo/app/ui/DisciplineSearch.tsx](https://github.com/antoniobrites/Faculdade-Impacta/blob/codex/innovation-lab-16-tarefas/2-semestre/Projeto%20Final/edutrack-app-completo/app/ui/DisciplineSearch.tsx)
 
 Consulte também o índice, a matriz de adaptações e os arquivos em `evidencias/` deste pacote.
+
+## Revisão no GitHub
+
+[PR final #2 — aberto para revisão do professor](https://github.com/antoniobrites/Faculdade-Impacta/pull/2). Código enviado na branch `codex/innovation-lab-16-tarefas`.
