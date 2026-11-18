@@ -14,6 +14,9 @@ Comandos de conferência: `git --version`, `git status --short`, `git log --onel
 
 ## Fontes e evidências
 
+- [GitHub aberto na pasta Projeto Final](evidencias/01-github-projeto-final.png)
+- [Abrir 2-semestre/Projeto Final na branch da entrega](https://github.com/antoniobrites/Faculdade-Impacta/tree/codex/innovation-lab-16-tarefas/2-semestre/Projeto%20Final)
+
 - [VS Code: versões e cálculo executados](evidencias/01-03-vscode-versoes.png)
 - [Saída textual da verificação](evidencias/versoes-e-calculo.txt)
 

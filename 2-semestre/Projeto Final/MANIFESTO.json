@@ -133,8 +133,8 @@
     },
     {
       "arquivo": "docs/innovation-lab/cobertura-imagens.json",
-      "bytes": 1558,
-      "sha256": "171613c4c8e50bee3422a120d7355f564ed2f32cf640d05676664b0a9dbd8bc1"
+      "bytes": 1852,
+      "sha256": "cac7ac5428f479334c95832905af80d4b3dc0b93db3b58ea9d3129f8eeeac5f1"
     },
     {
       "arquivo": "docs/innovation-lab/evidencias/01-03-vscode-versoes.png",
@@ -145,6 +145,11 @@
       "arquivo": "docs/innovation-lab/evidencias/01-git-historico.png",
       "bytes": 147160,
       "sha256": "0825e58bee9a290950f9696b3916a8de595da2523de65a2826785d5e9f69efa3"
+    },
+    {
+      "arquivo": "docs/innovation-lab/evidencias/01-github-projeto-final.png",
+      "bytes": 88466,
+      "sha256": "4855020f86515fe890137ce1b386c0a15eeb6162eca0faadd35bfe832218f7ac"
     },
     {
       "arquivo": "docs/innovation-lab/evidencias/03-openspec-contexto.png",
@@ -215,6 +220,21 @@
       "arquivo": "docs/innovation-lab/evidencias/12-funcao-progresso.png",
       "bytes": 113087,
       "sha256": "93d5e370f24cb251ea87a9e6b80689cc6c40115ba61e374158f6e3755fa02723"
+    },
+    {
+      "arquivo": "docs/innovation-lab/evidencias/13-api-requisicao-resposta.json",
+      "bytes": 810,
+      "sha256": "78a124516346a91f07274045882ef3e31b4460501474a1d305c506bb5974c205"
+    },
+    {
+      "arquivo": "docs/innovation-lab/evidencias/13-api-requisicao.png",
+      "bytes": 46445,
+      "sha256": "c51a739151c94bc3bd5b93e990e75d6058e874a3afcbf2a347bee6a057648e0d"
+    },
+    {
+      "arquivo": "docs/innovation-lab/evidencias/13-api-resposta-201.png",
+      "bytes": 58739,
+      "sha256": "8c93c144f8591a25a49a6af2bb8d93ad260e69eef605c3bc07308e2b6dea52a1"
     },
     {
       "arquivo": "docs/innovation-lab/evidencias/13-swagger.jpg",
@@ -308,13 +328,13 @@
     },
     {
       "arquivo": "docs/innovation-lab/imagens_por_tarefa.json",
-      "bytes": 3941,
-      "sha256": "011494346bff6397392f254007f6a347b5ca29c82885eaa0aedffd8b79a6aa5a"
+      "bytes": 4604,
+      "sha256": "45975b70e74f8cb3164c7efb9764da73a948b3ccf3ea15266de8f5606714bf7b"
     },
     {
       "arquivo": "docs/innovation-lab/LEIA-ME.md",
-      "bytes": 1906,
-      "sha256": "7ebb511e3aa452f20e4fcc2454c2d022b1688699f32a95eaa48fafd9c3c73de7"
+      "bytes": 2070,
+      "sha256": "9680aa3003dcd76e47713617bdacbc94979deda990e41d93bdee5af1a845981e"
     },
     {
       "arquivo": "docs/innovation-lab/LEITURA_AGENTS_IA.md",
@@ -328,8 +348,8 @@
     },
     {
       "arquivo": "docs/innovation-lab/RELATORIO_FINAL.pdf",
-      "bytes": 3045884,
-      "sha256": "dfde4d4e3f22dd17bbedc2b295bdcbb90436cb47c8989e822c228a3c7fd8d695"
+      "bytes": 3203477,
+      "sha256": "b7e2cf8a6d9014e3de862d5ecfad9a48f8ea397e9030ef317af519c56233b5f2"
     },
     {
       "arquivo": "docs/innovation-lab/resumo.json",
@@ -338,8 +358,8 @@
     },
     {
       "arquivo": "docs/innovation-lab/tarefa-01.md",
-      "bytes": 1302,
-      "sha256": "7cd75d513cebcef473c0fab60caa3976dd8188fefe4b1123ffd6401a36127294"
+      "bytes": 1556,
+      "sha256": "6921857781b2f2686dfe1b594ee38d3f7f375fab1ac85dc32eca4b7dead34454"
     },
     {
       "arquivo": "docs/innovation-lab/tarefa-02.md",
@@ -398,8 +418,8 @@
     },
     {
       "arquivo": "docs/innovation-lab/tarefa-13.md",
-      "bytes": 1347,
-      "sha256": "c85317529a263a49695974f052b77c4604cf0093c32ced103783463435820510"
+      "bytes": 2143,
+      "sha256": "da77ce8fcc147fb676c52bc6b7d8d1eb09d6de567ff5ad5bab0051c7950298ac"
     },
     {
       "arquivo": "docs/innovation-lab/tarefa-14.md",

@@ -28,4 +28,4 @@ Nenhum trabalho foi entregue automaticamente no Classroom. A produção não foi
 
 ## Revisão ilustrada
 
-Relatório atualizado com 37 páginas e imagens em cada uma das 16 tarefas. As legendas identificam telas, código, ambiente e limites da evidência. `imagens_por_tarefa.json` relaciona os prints e `cobertura-imagens.json` informa as páginas verificadas.
+Relatório atualizado com 39 páginas e imagens em cada uma das 16 tarefas. A página 4 mostra o GitHub na pasta `2-semestre/Projeto Final`; as páginas 30 e 31 mostram a requisição JSON e a resposta HTTP 201 executadas no Swagger local. As legendas identificam telas, código, ambiente e limites da evidência. `imagens_por_tarefa.json` relaciona os prints e `cobertura-imagens.json` informa as páginas verificadas.
