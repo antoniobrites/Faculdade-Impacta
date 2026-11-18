@@ -25,3 +25,7 @@ Nenhum trabalho foi entregue automaticamente no Classroom. A produção não foi
 ## Revisão no GitHub
 
 [PR final #2 — aberto para revisão do professor](https://github.com/antoniobrites/Faculdade-Impacta/pull/2). Código enviado na branch `codex/innovation-lab-16-tarefas`.
+
+## Revisão ilustrada
+
+Relatório atualizado com 37 páginas e imagens em cada uma das 16 tarefas. As legendas identificam telas, código, ambiente e limites da evidência. `imagens_por_tarefa.json` relaciona os prints e `cobertura-imagens.json` informa as páginas verificadas.

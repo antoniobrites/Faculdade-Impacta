@@ -132,6 +132,11 @@
       "sha256": "ed4fc21022da3f38c3e45b30b2c52d1f02fc9f1088aa92902dcaef73a3e6ed2a"
     },
     {
+      "arquivo": "docs/innovation-lab/cobertura-imagens.json",
+      "bytes": 1558,
+      "sha256": "171613c4c8e50bee3422a120d7355f564ed2f32cf640d05676664b0a9dbd8bc1"
+    },
+    {
       "arquivo": "docs/innovation-lab/evidencias/01-03-vscode-versoes.png",
       "bytes": 106496,
       "sha256": "dbc65a1224c6eabd2bdea14892b2f704a7066ccab981029bc2eb8750787e6720"
@@ -140,6 +145,16 @@
       "arquivo": "docs/innovation-lab/evidencias/01-git-historico.png",
       "bytes": 147160,
       "sha256": "0825e58bee9a290950f9696b3916a8de595da2523de65a2826785d5e9f69efa3"
+    },
+    {
+      "arquivo": "docs/innovation-lab/evidencias/03-openspec-contexto.png",
+      "bytes": 142592,
+      "sha256": "4812b59dc2129cbe08f68f582352bfac089912ae7aa23de955c69d59dbea0833"
+    },
+    {
+      "arquivo": "docs/innovation-lab/evidencias/04-backend-python.png",
+      "bytes": 155197,
+      "sha256": "cfb5305c9095428f00be4c99ce37f96faf165c6ffef0516414a72e2d253b0ed6"
     },
     {
       "arquivo": "docs/innovation-lab/evidencias/05-pr-integrado.jpg",
@@ -157,6 +172,16 @@
       "sha256": "c5570418c2e4792de8a2817b1942ad887b7d8c1b767b8db0375d56674d4dcd30"
     },
     {
+      "arquivo": "docs/innovation-lab/evidencias/07-frontend-api.png",
+      "bytes": 166913,
+      "sha256": "8bd0873f6218902d6938877c88fa192c342c4f321a5ab2e646d4462d6e4bbe38"
+    },
+    {
+      "arquivo": "docs/innovation-lab/evidencias/08-modelo-disciplinas.png",
+      "bytes": 157335,
+      "sha256": "987db0baa42c101253428b13436464d56bbf19d9b16ff3b3617bba3afd3ad9f1"
+    },
+    {
       "arquivo": "docs/innovation-lab/evidencias/09-dashboard.jpg",
       "bytes": 75017,
       "sha256": "e3d3e81176f3749286c7e626d9a45e8a54dc2c87704d5bd43d7d60ee4365b8bd"
@@ -170,6 +195,26 @@
       "arquivo": "docs/innovation-lab/evidencias/09-tarefas.jpg",
       "bytes": 62644,
       "sha256": "29712cd798b8476714ca6411dde60b3cdfff710e93317ba0e1c8e9ceec9ae38e"
+    },
+    {
+      "arquivo": "docs/innovation-lab/evidencias/10-agents-regras.png",
+      "bytes": 205953,
+      "sha256": "6a4081c7dbcb30e7e86ec80291dcb81ae738f4f26533fc6b2c1e576555f5ce09"
+    },
+    {
+      "arquivo": "docs/innovation-lab/evidencias/10-proposta-notas.png",
+      "bytes": 116307,
+      "sha256": "0f2c9dcdf16e454f5b75ccb90ca5acdbaff2f44523055557a0fa12ea82e9788e"
+    },
+    {
+      "arquivo": "docs/innovation-lab/evidencias/11-modelo-tarefas.png",
+      "bytes": 166691,
+      "sha256": "af46a0a9cb0f32d1775907406fe78323418d766c1f0189db00151dc1bd924084"
+    },
+    {
+      "arquivo": "docs/innovation-lab/evidencias/12-funcao-progresso.png",
+      "bytes": 113087,
+      "sha256": "93d5e370f24cb251ea87a9e6b80689cc6c40115ba61e374158f6e3755fa02723"
     },
     {
       "arquivo": "docs/innovation-lab/evidencias/13-swagger.jpg",
@@ -195,6 +240,11 @@
       "arquivo": "docs/innovation-lab/evidencias/16-pr-final.jpg",
       "bytes": 94077,
       "sha256": "48f15565f8ec848a02d33c4b65dd6467495708389af69730a7d2025576664b85"
+    },
+    {
+      "arquivo": "docs/innovation-lab/evidencias/16-testes-backend.png",
+      "bytes": 129131,
+      "sha256": "828cbb8a068dae1c151671ec409a408b2aac72c86c80a169718cdb58b0c6b6fc"
     },
     {
       "arquivo": "docs/innovation-lab/evidencias/build-hostinger.txt",
@@ -257,9 +307,14 @@
       "sha256": "7e8a12986321c481262cfacf81427dbd65b2b6a80b32de0a9a76ef579b7e16f0"
     },
     {
+      "arquivo": "docs/innovation-lab/imagens_por_tarefa.json",
+      "bytes": 3941,
+      "sha256": "011494346bff6397392f254007f6a347b5ca29c82885eaa0aedffd8b79a6aa5a"
+    },
+    {
       "arquivo": "docs/innovation-lab/LEIA-ME.md",
-      "bytes": 1626,
-      "sha256": "cdf09063b8845c545e894c437f7d6131b9926af2dbcac6a7eaeb2580a369ef26"
+      "bytes": 1906,
+      "sha256": "7ebb511e3aa452f20e4fcc2454c2d022b1688699f32a95eaa48fafd9c3c73de7"
     },
     {
       "arquivo": "docs/innovation-lab/LEITURA_AGENTS_IA.md",
@@ -273,8 +328,8 @@
     },
     {
       "arquivo": "docs/innovation-lab/RELATORIO_FINAL.pdf",
-      "bytes": 1339203,
-      "sha256": "fa2aa5218eda31d379246c3657da20eebfb5c2499c00daf66b3664b3b99ca4ec"
+      "bytes": 3045884,
+      "sha256": "dfde4d4e3f22dd17bbedc2b295bdcbb90436cb47c8989e822c228a3c7fd8d695"
     },
     {
       "arquivo": "docs/innovation-lab/resumo.json",
