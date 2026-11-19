@@ -4,6 +4,7 @@ import './globals.css';
 import './study-game.css';
 import './connected.css';
 import './study-activity.css';
+import './integrations.css';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -13,16 +14,16 @@ const geistSans = Geist({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.EDUTRACK_SITE_URL || 'http://localhost:3002'),
   title: 'EduTrack — Gestão acadêmica inteligente',
-  description: 'Organize cursos, disciplinas e tarefas e acompanhe seu progresso com o apoio da Edu IA.',
+  description: 'Organize cursos, disciplinas e tarefas, planeje seus estudos e acompanhe seu progresso.',
   openGraph: {
     title: 'EduTrack — Gestão acadêmica inteligente',
-    description: 'Organize seus estudos. Acompanhe seu progresso. Aprenda com apoio da IA.',
+    description: 'Organize seus estudos. Planeje sua rotina. Acompanhe seu progresso.',
     images: ['/og.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'EduTrack — Gestão acadêmica inteligente',
-    description: 'Organize seus estudos. Acompanhe seu progresso. Aprenda com apoio da IA.',
+    description: 'Organize seus estudos. Planeje sua rotina. Acompanhe seu progresso.',
     images: ['/og.png'],
   },
 };

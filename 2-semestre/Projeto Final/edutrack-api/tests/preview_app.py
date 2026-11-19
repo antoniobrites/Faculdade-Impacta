@@ -13,7 +13,7 @@ from edutrack.models import Base, Course, Discipline, Task, TimeEntry, User, utc
 from edutrack.security import password_hasher
 
 
-def build_preview(database_path: Path):
+def build_preview(database_path: Path, *, populate: bool = True):
     if os.environ.get("EDUTRACK_QA_PREVIEW") != "1":
         raise RuntimeError("Prévia de QA exige ativação explícita e não deve ser implantada.")
     # Conexões próprias suportam as quatro leituras simultâneas feitas pelo dashboard.
@@ -26,6 +26,7 @@ def build_preview(database_path: Path):
     settings = Settings(_env_file=None, environment="test", db_writes_enabled=True,
                         jwt_secret="segredo-ficticio-exclusivo-da-previa-descartavel",
                         OPENAI_API_KEY=None, OPENAI_MODEL=None, SENDGRID_API_KEY=None,
+                        GEMINI_API_KEY=None, GEMINI_MODEL=None, ai_provider="gemini", classroom_enabled=False,
                         email_from=None, email_verification_enabled=False, password_reset_enabled=False)
     app = create_app(settings, engine)
     with app.state.session_factory() as db:
@@ -33,6 +34,9 @@ def build_preview(database_path: Path):
                     senha_hash=password_hasher.hash("Demonstracao-local-2026"), role="student")
         db.add(user)
         db.flush()
+        if not populate:
+            db.commit()
+            return app
         course = Course(id=uuid4(), usuario_id=user.id, nome="Ciência da Computação — demonstração", instituicao="Ambiente de testes")
         db.add(course)
         db.flush()

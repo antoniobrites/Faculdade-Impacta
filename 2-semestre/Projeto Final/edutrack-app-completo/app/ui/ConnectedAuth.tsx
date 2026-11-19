@@ -8,7 +8,7 @@ import { api, ApiError } from '../lib/academic-api';
 import { getCpfError } from '../lib/cpf';
 import type { ApiUser } from '../lib/academic-types';
 
-type AuthOptions = { email_verification_required: boolean; email_delivery_configured: boolean };
+type AuthOptions = { email_verification_required: boolean; email_delivery_configured: boolean; restricted_adults_mode?: boolean; registration_enabled?: boolean };
 type Credentials = { email: string; senha: string };
 
 export default function ConnectedAuth({ register, onLogin }: { register: boolean; onLogin: (user: ApiUser) => void }) {
@@ -53,7 +53,7 @@ export default function ConnectedAuth({ register, onLogin }: { register: boolean
   }
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (busy || !options) return;
+    if (busy || !options || (register && options.registration_enabled === false)) return;
     const data = new FormData(event.currentTarget);
     const email = String(data.get('email')).trim();
     const senha = String(data.get('senha'));
@@ -101,7 +101,7 @@ export default function ConnectedAuth({ register, onLogin }: { register: boolean
   const unavailable = options?.email_verification_required && !options.email_delivery_configured;
   return <main className="auth-shell">
     <section className="auth-panel auth-brand-panel"><div className="auth-top"><Brand /><ThemeToggle compact /></div><div><span className="eyebrow">Sua rotina em um só lugar</span><h1>{register ? 'Comece do seu jeito.' : 'Continue de onde parou.'}</h1><p>Cursos, disciplinas, tarefas e planos de estudo conectados à sua conta.</p></div><small>EduTrack · Gestão acadêmica inteligente</small></section>
-    <section className="auth-panel auth-form-panel">{verifying ? <form className="auth-form" onSubmit={confirm}>
+    <section className="auth-panel auth-form-panel">{register && options?.registration_enabled === false ? <div className="auth-form"><div className="auth-heading"><span>Acesso por aprovação</span><h2>Cadastro público fechado</h2><p>Esta versão é exclusiva para adultos convidados (18+), com conta previamente aprovada e e-mail confirmado. Não basta marcar uma declaração de idade.</p></div><button className="primary-button" onClick={() => router.push('/login')}>Entrar com conta autorizada</button></div> : verifying ? <form className="auth-form" onSubmit={confirm}>
       <div className="email-verification-icon"><MailCheck size={30} /></div>
       <div className="auth-heading"><span>Proteja sua conta</span><h2>Confirme seu e-mail</h2><p>Digite o código de seis dígitos para {verifying}. Ele vale por dez minutos.</p></div>
       <fieldset disabled={busy} className="connected-fields"><label>Código de confirmação<input className="verification-code" name="codigo" required pattern="[0-9]{6}" minLength={6} maxLength={6} inputMode="numeric" autoComplete="one-time-code" placeholder="000000" autoFocus /></label></fieldset>
@@ -125,7 +125,7 @@ export default function ConnectedAuth({ register, onLogin }: { register: boolean
       <button className="primary-button auth-submit" disabled={busy || !options || !!(register && unavailable)} type="submit">{busy ? 'Conectando…' : !options ? 'Conectando à API…' : register ? 'Criar conta' : 'Entrar'} <ArrowRight size={18} /></button>
       <p className="prototype-note"><ShieldCheck size={16} /> Dados salvos no SQL Server pela API. Sua senha é protegida por hash e não é salva no navegador.</p>
       <p className="prototype-note">{options?.email_verification_required ? 'Confirme seu e-mail para acessar seus estudos. CPF e códigos não são salvos no navegador.' : 'Confirmação de e-mail ainda não ativada neste ambiente local.'}</p>
-      <p className="auth-switch">{register ? 'Já tem uma conta?' : 'Ainda não tem conta?'} <button type="button" disabled={busy} onClick={() => router.push(register ? '/login' : '/cadastro')}>{register ? 'Entrar' : 'Cadastre-se'}</button></p>
+      {options?.restricted_adults_mode && <p className="auth-feedback">Acesso exclusivo para adultos convidados (18+). Sua conta deve estar aprovada pelo responsável.</p>}{(register || options?.registration_enabled) && <p className="auth-switch">{register ? 'Já tem uma conta?' : 'Ainda não tem conta?'} <button type="button" disabled={busy} onClick={() => router.push(register ? '/login' : '/cadastro')}>{register ? 'Entrar' : 'Cadastre-se'}</button></p>}
     </form>}</section>
   </main>;
 }

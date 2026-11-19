@@ -2,10 +2,10 @@
 const COOKIE = 'edutrack_session';
 const UUID = '[0-9a-fA-F-]{36}';
 const routes: Record<string, RegExp> = {
-  GET: new RegExp(`^(auth/options|admin/access|me|dashboard|courses|disciplines|tasks|study-sessions|edu-ia/(status|context)|(courses|disciplines|tasks)/${UUID})$`),
-  POST: /^(auth\/(login|register|logout|request-verification|verify-email|forgot-password|reset-password)|courses|disciplines|tasks|study-sessions|edu-ia\/(chat|study-plan))$/,
+  GET: new RegExp(`^(auth/options|admin/access|me|dashboard|courses|disciplines|tasks|study-sessions|search/disciplines|reports/(generate|progress\\.pdf)|edu-ia/(status|context)|integrations/google/(status|courses|disciplines/${UUID}/content)|(courses|disciplines|tasks)/${UUID})$`),
+  POST: /^(auth\/(login|register|logout|request-verification|verify-email|forgot-password|reset-password)|courses|disciplines|tasks|study-sessions|edu-ia\/(chat|study-plan)|integrations\/google\/(start|callback|preview|import))$/,
   PUT: new RegExp(`^(me|(courses|disciplines|tasks)/${UUID})$`),
-  DELETE: new RegExp(`^(courses|disciplines|tasks)/${UUID}$`),
+  DELETE: new RegExp(`^((courses|disciplines|tasks)/${UUID}|integrations/google/connection)$`),
 };
 
 function json(body: unknown, status = 200, headers: Record<string, string> = {}) {
@@ -91,16 +91,33 @@ export async function proxyBackend(request: Request, backendUrl: string | undefi
   }
   try {
     const target = new URL('api/' + path, base.href.endsWith('/') ? base.href : base.href + '/');
-    for (const key of ['limit', 'offset', 'curso_id', 'disciplina_id', 'status']) {
+    for (const key of ['limit', 'offset', 'curso_id', 'disciplina_id', 'status', 'tipo', 'q', 'overdue']) {
       const value = url.searchParams.get(key);
       if (value !== null) target.searchParams.set(key, value);
     }
-    const upstream = await fetcher(target, { method, headers, body, redirect: 'manual', cache: 'no-store', signal: AbortSignal.timeout(path.startsWith('edu-ia/') ? 125000 : 15000) });
+    const upstream = await fetcher(target, { method, headers, body, redirect: 'manual', cache: 'no-store', signal: AbortSignal.timeout(path.startsWith('edu-ia/') ? 125000 : path.startsWith('integrations/google/') ? 65000 : 15000) });
     if (upstream.status >= 300 && upstream.status < 400) return json({ detail: 'A API retornou um redirecionamento não permitido.' }, 502);
     const responseHeaders: Record<string, string> = {};
     if (upstream.status === 401) responseHeaders['Set-Cookie'] = sessionCookie('', 0, secure);
     if (upstream.headers.has('retry-after')) responseHeaders['Retry-After'] = upstream.headers.get('retry-after')!;
     if (upstream.status === 204) return new Response(null, { status: 204, headers: { 'Cache-Control': 'no-store' } });
+    if (path === 'reports/progress.pdf' && upstream.ok && upstream.headers.get('content-type')?.split(';')[0] === 'application/pdf') {
+      // O documento é privado e limitado; não propagar cabeçalhos arbitrários da API.
+      const reader = upstream.body?.getReader();
+      if (!reader) return json({ detail: 'Relatório vazio.' }, 502);
+      const chunks: Uint8Array[] = []; let size = 0;
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        size += value.byteLength;
+        if (size > 3 * 1024 * 1024) { await reader.cancel(); return json({ detail: 'Relatório acima do limite de download.' }, 502); }
+        chunks.push(value);
+      }
+      const pdf = new Uint8Array(size); let position = 0;
+      for (const chunk of chunks) { pdf.set(chunk, position); position += chunk.length; }
+      if (new TextDecoder().decode(pdf.slice(0, 5)) !== '%PDF-') return json({ detail: 'Documento PDF inválido.' }, 502);
+      return new Response(pdf, { headers: { 'Content-Type': 'application/pdf', 'Content-Disposition': 'attachment; filename="edutrack-progresso.pdf"', 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff' } });
+    }
     if (!upstream.headers.get('content-type')?.includes('application/json')) return json({ detail: 'A API não retornou uma resposta válida.' }, 502);
     const result = await upstream.json() as Record<string, unknown> | null;
     if (path === 'auth/login' && upstream.ok) {

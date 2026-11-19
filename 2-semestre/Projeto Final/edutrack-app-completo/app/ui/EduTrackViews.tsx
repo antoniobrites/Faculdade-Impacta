@@ -9,6 +9,8 @@ import { useStudyRouter as useRouter } from './useStudyRouter';
 import { studySummary, type StudySession } from '../lib/study-game';
 import { useState, type CSSProperties, type ReactNode } from 'react';
 import type { Course, Discipline, StudyTask, Profile } from '../lib/academic-types';
+import ClassroomLibrary from './ClassroomLibrary';
+import DisciplineSearch from './DisciplineSearch';
 type AccountStatus = { role: 'student' | 'admin'; plan: 'Gratuito' | 'Interesse no Pro' };
 export type SuggestedCourse = { title: string; source: string; type: string; category: string; description: string; duration: string; color: string };
 
@@ -22,6 +24,7 @@ const navItems = [
   { path: '/ofensiva', label: 'Ofensiva', icon: Flame },
   { path: '/relatorios', label: 'Relatórios', icon: BarChart3 },
   { path: '/edu-ia', label: 'Edu IA', icon: Bot },
+  { path: '/integracoes', label: 'Integrações', icon: BookMarked },
   { path: '/gerenciamento', label: 'Administração', icon: Settings, adminOnly: true },
 ];
 
@@ -265,6 +268,7 @@ function DisciplinesPage({ disciplines, courses, tasks, edit, add, goToCourses, 
   return (
     <>
       <PageHeading eyebrow="Minhas turmas" title="Disciplinas" description="Acesse cada matéria, acompanhe avisos e encontre rapidamente suas próximas atividades." action={<button className="primary-button" onClick={courses.length ? add : goToCourses}><Plus size={17} /> {courses.length ? 'Nova disciplina' : 'Adicionar curso primeiro'}</button>} />
+      <DisciplineSearch navigate={navigate} />
       {disciplines.length ? <>
         <section className="classroom-summary surface">
           <div><span className="summary-icon violet"><BookOpen /></span><p><strong>{disciplines.length}</strong><small>disciplinas ativas</small></p></div>
@@ -312,6 +316,7 @@ function DisciplineDetails({ discipline, course, tasks, edit, addTask, editTask,
               <div className="activity-actions"><button className="task-status-button" onClick={() => toggle(task.id)}>{task.status === 'Concluída' ? 'Reabrir' : 'Concluir'}</button><button className="edit-button" onClick={() => editTask(task.id)} aria-label={'Editar ' + task.title}><Edit3 size={16} /></button></div>
             </article>
           ))}</div> : <section className="surface class-empty"><EmptyState icon={<ClipboardList />} title="Nenhuma atividade nesta disciplina" description="Crie a primeira atividade para montar seu mural de estudos." action={<button className="secondary-button" onClick={addTask}>Criar atividade</button>} /></section>}
+          <ClassroomLibrary key={discipline.id} disciplineId={discipline.id} />
         </div>
       </section>
     </>

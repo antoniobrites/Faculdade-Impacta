@@ -1,33 +1,44 @@
-# Estado da entrega final — 03/11/2026
+# Estado da entrega - 16/11/2026
 
-Este documento distingue implementação, testes locais e publicação. Não interpretar os resultados antigos como prova de publicação atual.
+## O que está publicado
 
-## Implementado
+O frontend foi atualizado em 16/11/2026, em https://srv1834976.hstgr.cloud, com apresentação acadêmica e exportação do plano. A base de funcionalidades publicada em 12/11 foi preservada. Inclui Classroom completo, migração 005 e modelo com 14 tabelas. A importação real foi validada com uma conta autorizada: 1 disciplina, 16 tarefas, 56 conteúdos e 43 links; a repetição não criou duplicatas.
 
-- Login, cadastro, validação matemática de CPF sem armazenamento e verificação por e-mail via SendGrid.
-- Recuperação de senha por link de 15 minutos, uso único, respostas neutras e invalidação das sessões anteriores.
-- Cursos, disciplinas, tarefas e sessões com API, SQL Server e separação entre usuários.
-- Dashboard, calendário de estudos, floresta de foco, ofensiva, menu recolhível, tutorial e temas claro/escuro.
-- Relatórios por semana local, navegação entre semanas, dados acessíveis e exportação CSV.
-- Planejador por regras com contexto da conta; agente de IA generativa implementado para futura ativação.
-- Controle de acesso administrativo. A área não oferece gestão irrestrita de outros alunos.
-- Swagger local, DER, dicionário, SQL para banco vazio, migrações, testes e OpenSpec.
+Evidências: [publicação](PUBLICACAO_CLASSROOM_COMPLETO_2026-11-12.md), [importação real](IMPORTACAO_REAL_SQL_FUNDAMENTALS_2026-11-12.md) e [correção da busca](CORRECAO_BUSCA_CLASSROOM_2026-11-12.md). Estes registros históricos não equivalem a um novo teste de todas as integrações em produção.
 
-## Ativação local conferida
+## Revisão local de 16/11/2026
 
-A migração 003 foi aplicada após autorização explícita. As nove tabelas foram verificadas por consultas sem dados; as quantidades das tabelas anteriores permaneceram iguais. A configuração privada local ativa recuperação por e-mail e mantém o remetente SendGrid existente. Nenhuma senha real foi redefinida e nenhum e-mail novo foi enviado durante esta etapa.
+- Frontend: 43 testes passaram; TypeScript e ESLint passaram na revisão inicial.
+- Backend: 153 testes passaram em SQLite em memória; Ruff sem problemas.
+- OpenSpec: 11 itens válidos em modo estrito.
+- Nova página `/apresentacao`, com visão do projeto, roteiro em cinco passos, arquitetura e limites reais. A página inicial ganhou um link para ela e deixou de anunciar IA como se estivesse ativa.
+- Publicação isolada do frontend concluída; nenhuma alteração de banco real, envio de e-mail ou ativação de integração ocorreu nesta revisão.
 
-92 testes de backend e 39 de frontend passaram. A configuração de envio é substituída por captura em memória nos testes. A compilação Node/Next 16.4.5 para Hostinger passou; TypeScript, ESLint e Ruff também passaram. OpenSpec: 7 itens válidos. Auditoria das dependências de produção do frontend: nenhuma vulnerabilidade conhecida. [Detalhes e limites da validação](VALIDACAO_FINAL.md).
+## Funcionalidades implementadas
 
-## Dependências externas
+Login/cadastro e recuperação; cursos, disciplinas, tarefas e sessões; foco e calendário; relatórios semanais e CSV; planejamento local por regras; importação de materiais Classroom; isolamento por usuário. A validação matemática do CPF não verifica identidade e o CPF não é armazenado.
 
-- **IA generativa:** o usuário informou que ainda não possui chave e solicitou apenas preparar a integração. `scripts/configure_ai.py` recebe a chave em entrada oculta e a salva fora do Git/OneDrive. Não há chamada paga ou resposta real de modelo validada.
-- **Hostinger:** publicado em <https://srv1834976.hstgr.cloud>, após autorização. API e frontend saudáveis; SQL Server Express com nove tabelas, TLS e banco novo. SendGrid e recuperação habilitados. Não houve migração de contas locais. [Evidências e limites](PUBLICACAO_HOSTINGER.md).
-- **GitHub:** destino autorizado `antoniobrites/Faculdade-Impacta`, pasta `2-semestre/Projeto Final`. Código completo, testes, documentação e OpenSpec separados de segredos e dados dos alunos.
-- **Vídeos:** o roteiro está pronto. Gravação e links finais precisam ser conferidos; prints e roteiro não equivalem a vídeo entregue.
+## Limites para apresentar ao professor
 
-## Escopo preservado
+- Google OAuth está em modo de teste: a conexão exige conta previamente autorizada.
+- Chat/IA externa permanece desativado. O planejador por regras é funcional, mas não é uma resposta de modelo generativo.
+- SMS, pagamentos, Flutter, histórico persistente de conversas e administração irrestrita de terceiros não estão ativos.
+- Testes isolados não confirmam SQL Server real, e-mail, OAuth nem IA externa.
+- Os três vídeos e seus links finais ainda precisam de conferência. Roteiro e prints não substituem a entrega dos vídeos.
+- Melhorias de 16/11 publicadas em `/apresentacao` e no planejador; inspeção visual no navegador não concluída por indisponibilidade do CUA.
 
-SMS, pagamentos, Flutter, histórico persistente de conversas e administração completa de terceiros continuam fora da versão atual. Os requisitos antigos que descrevem esses recursos são planejamento, não comprovação de funcionamento.
+## Entrega
 
-O endereço público antigo no Sites permanece separado. Use o novo endereço Hostinger acima. Endereços localhost dependem dos processos em execução.
+Siga [o roteiro de avaliação](ROTEIRO_AVALIACAO_FINAL.md) e [a lista final de conferência](ENTREGA_PROFESSOR_2026-11-16.md). O site antigo no Sites é independente. O estado de 09/11 foi preservado em [histórico](ESTADO_HISTORICO_2026-11-09.md), mas não descreve a versão publicada mais recente.
+
+Melhoria funcional adicional: o plano proposto pode ser baixado em TXT, incluindo blocos, alertas e quantidade de tarefas fora do período, sem exportar identificadores internos. Dois testes cobrem o formato e a ausência desses identificadores.
+
+Verificação SSH somente leitura em 16/11 confirmou que o frontend efetivamente ativo estava na release 20261112-180444, posterior à primeira publicação registrada de 12/11. Web, API e SQL estavam saudáveis.
+
+## Publicação final de 16/11
+
+Release edutrack-ui-20261116-215209 publicada. Somente web recriado e saudável. Página inicial, apresentação, login e privacidade: HTTP 200; 11 recursos estáticos: 200; API sem sessão: 401. Containers API e SQL preservaram os mesmos IDs. Imagem anterior retida para rollback. Confira [validação](VALIDACAO_2026-11-16.md).
+
+## Edu IA: experiência conversacional atualizada
+
+Em 16/11 foi publicada a release frontend-only `edutrack-chat-20261116-222336`. Chat com sugestões, composição confortável, formatação segura, copiar/baixar conversa e interrupção da espera; planejador local em aba separada. 48 testes frontend, TypeScript, ESLint, build e OpenSpec passaram. Estado real permanece sem modelo/chave e chat generativo desativado. Não confundir nova interface com ativação do Gemini ou OpenAI. [Detalhes, evidências e limites](EDU_IA_EXPERIENCIA_2026-11-16.md).

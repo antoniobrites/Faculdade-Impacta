@@ -1148,6 +1148,137 @@
         ]
       }
     },
+    "/api/search/disciplines": {
+      "get": {
+        "tags": [
+          "Busca e relatórios"
+        ],
+        "summary": "Search Disciplines",
+        "description": "Nome parcial OU tarefa atrasada. Sem filtros, lista as disciplinas da conta.",
+        "operationId": "search_disciplines_api_search_disciplines_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 150,
+              "default": "",
+              "title": "Q"
+            }
+          },
+          {
+            "name": "overdue",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Overdue"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100000,
+              "minimum": 0,
+              "default": 0,
+              "title": "Offset"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page_DisciplineOut_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reports/generate": {
+      "get": {
+        "tags": [
+          "Busca e relatórios"
+        ],
+        "summary": "Report Link",
+        "description": "Retorna caminho fixo de download; o download também exige autenticação.",
+        "operationId": "report_link_api_reports_generate_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/reports/progress.pdf": {
+      "get": {
+        "tags": [
+          "Busca e relatórios"
+        ],
+        "summary": "Progress Pdf",
+        "operationId": "progress_pdf_api_reports_progress_pdf_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/pdf": {}
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
     "/api/admin/access": {
       "get": {
         "tags": [
@@ -1489,6 +1620,325 @@
           }
         ]
       }
+    },
+    "/api/integrations/google/status": {
+      "get": {
+        "tags": [
+          "Google Classroom"
+        ],
+        "summary": "Status",
+        "operationId": "status_api_integrations_google_status_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/integrations/google/start": {
+      "post": {
+        "tags": [
+          "Google Classroom"
+        ],
+        "summary": "Start",
+        "operationId": "start_api_integrations_google_start_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/integrations/google/callback": {
+      "post": {
+        "tags": [
+          "Google Classroom"
+        ],
+        "summary": "Callback",
+        "operationId": "callback_api_integrations_google_callback_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CallbackInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/integrations/google/courses": {
+      "get": {
+        "tags": [
+          "Google Classroom"
+        ],
+        "summary": "Courses",
+        "operationId": "courses_api_integrations_google_courses_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/integrations/google/preview": {
+      "post": {
+        "tags": [
+          "Google Classroom"
+        ],
+        "summary": "Preview",
+        "operationId": "preview_api_integrations_google_preview_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PreviewInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/integrations/google/import": {
+      "post": {
+        "tags": [
+          "Google Classroom"
+        ],
+        "summary": "Import Items",
+        "operationId": "import_items_api_integrations_google_import_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/integrations/google/disciplines/{discipline_id}/content": {
+      "get": {
+        "tags": [
+          "Google Classroom"
+        ],
+        "summary": "Discipline Content",
+        "description": "Leitura local isolada por aluno, disponível também após desconectar o Google.",
+        "operationId": "discipline_content_api_integrations_google_disciplines__discipline_id__content_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "discipline_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Discipline Id"
+            }
+          },
+          {
+            "name": "tipo",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "atividade",
+                    "material",
+                    "aviso"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Tipo"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0,
+              "title": "Offset"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 30,
+              "title": "Limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/integrations/google/connection": {
+      "delete": {
+        "tags": [
+          "Google Classroom"
+        ],
+        "summary": "Disconnect",
+        "operationId": "disconnect_api_integrations_google_connection_delete",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -1520,8 +1970,36 @@
         ],
         "title": "AdminAccessOut"
       },
+      "CallbackInput": {
+        "properties": {
+          "state": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 32,
+            "title": "State"
+          },
+          "code": {
+            "type": "string",
+            "maxLength": 4096,
+            "minLength": 1,
+            "title": "Code"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "state",
+          "code"
+        ],
+        "title": "CallbackInput"
+      },
       "ChatInput": {
         "properties": {
+          "maior_de_idade": {
+            "type": "boolean",
+            "title": "Maior De Idade",
+            "default": false
+          },
           "messages": {
             "items": {
               "$ref": "#/components/schemas/ChatMessage"
@@ -1600,6 +2078,39 @@
           "tools_used"
         ],
         "title": "ChatOutput"
+      },
+      "ClassSelection": {
+        "properties": {
+          "turma_id": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9_-]{1,128}$",
+            "title": "Turma Id"
+          },
+          "atividades": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 500,
+            "title": "Atividades"
+          },
+          "modo": {
+            "type": "string",
+            "enum": [
+              "selecionadas",
+              "todas_atividades",
+              "completo"
+            ],
+            "title": "Modo",
+            "default": "selecionadas"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "turma_id"
+        ],
+        "title": "ClassSelection"
       },
       "CourseInput": {
         "properties": {
@@ -1880,6 +2391,53 @@
         "type": "object",
         "title": "HTTPValidationError"
       },
+      "ImportInput": {
+        "properties": {
+          "curso_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Curso Id"
+          },
+          "novo_curso": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CourseInput"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "conexao_versao": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Conexao Versao"
+          },
+          "turmas": {
+            "items": {
+              "$ref": "#/components/schemas/ClassSelection"
+            },
+            "type": "array",
+            "maxItems": 10,
+            "minItems": 1,
+            "title": "Turmas"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "conexao_versao",
+          "turmas"
+        ],
+        "title": "ImportInput"
+      },
       "Login": {
         "properties": {
           "email": {
@@ -2083,6 +2641,11 @@
       },
       "PlanInput": {
         "properties": {
+          "maior_de_idade": {
+            "type": "boolean",
+            "title": "Maior De Idade",
+            "default": false
+          },
           "data_inicio": {
             "type": "string",
             "format": "date",
@@ -2125,6 +2688,26 @@
           "data_inicio"
         ],
         "title": "PlanInput"
+      },
+      "PreviewInput": {
+        "properties": {
+          "turma_id": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9_-]{1,128}$",
+            "title": "Turma Id"
+          },
+          "completo": {
+            "type": "boolean",
+            "title": "Completo",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "turma_id"
+        ],
+        "title": "PreviewInput"
       },
       "ProfileInput": {
         "properties": {
@@ -2294,7 +2877,7 @@
             "anyOf": [
               {
                 "type": "string",
-                "maxLength": 10000
+                "maxLength": 30000
               },
               {
                 "type": "null"

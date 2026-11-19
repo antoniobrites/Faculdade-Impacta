@@ -1,48 +1,81 @@
-# EduTrack — entrega acadêmica
+# EduTrack — Projeto Final
 
-**Site de referência:** <https://srv1834976.hstgr.cloud>. A disponibilidade e o acesso dependem da configuração vigente no servidor. Esta documentação não autoriza cadastro público nem migra contas locais. A revisão das 16 tarefas está sendo preparada em branch própria; commits no GitHub não publicam automaticamente o site.
+Gestão acadêmica com **React/TypeScript**, **Python/FastAPI**, **SQL Server** e **OpenSpec**.
+Entrega de Innovation Lab preparada em **17/11/2026**, com 16 respostas, código e evidências.
 
-Gestão de estudos com React/TypeScript, API Python/FastAPI e SQL Server. Este pacote contém código-fonte, testes, documentação Markdown, modelo de dados, SQL e OpenSpec. Não contém banco de alunos, credenciais ou dependências instaladas.
+## Comece por aqui
+- [PR final #2 — aberto para revisão](https://github.com/antoniobrites/Faculdade-Impacta/pull/2)
+- [Índice das 16 tarefas](docs/innovation-lab/LEIA-ME.md)
+- [Adaptações para avaliação](docs/innovation-lab/ADAPTACOES.md)
+- [Relatório final em PDF](docs/innovation-lab/RELATORIO_FINAL.pdf)
+- [Validação e limites](docs/innovation-lab/VALIDACAO.md)
+- [Pesquisa e cópias do Figma](docs/pesquisa/referencias.md)
+- [PR de documentação integrado](https://github.com/antoniobrites/Faculdade-Impacta/pull/1)
 
-## Tecnologias utilizadas
+O PR final permanece aberto para revisão do professor. Estes arquivos não publicam o site nem enviam trabalhos ao Classroom.
+O endereço já utilizado pelo projeto é https://srv1834976.hstgr.cloud; esta entrega local não comprova atualização ou disponibilidade atual desse ambiente.
 
-- **Interface:** TypeScript, React, Next.js e Vinext; navegação responsiva e temas claro/escuro.
-- **API:** Python, FastAPI e OpenAPI/Swagger.
-- **Dados:** SQL Server e SQLAlchemy, com consultas restritas ao usuário autenticado.
-- **Qualidade:** pytest, Node test runner, Ruff, ESLint, TypeScript e OpenSpec.
-- **Versionamento:** Git e GitHub, com branches e Pull Requests.
+## Organização
+| Pasta | Finalidade |
+|---|---|
+| edutrack-app-completo | Frontend, componentes, tema, proxy e OpenSpec |
+| edutrack-api | API, modelos, migrações, cálculos, relatórios e testes |
+| edutrack-documentacao | Documentação histórica, DER e dicionário |
+| docs/innovation-lab | Entrega atual, respostas e evidências fictícias |
+| deploy | Configuração existente; executar somente com autorização |
 
-Xano/XanoScript e FlutterFlow dos enunciados são adaptados à arquitetura existente por decisão do aluno, sujeita à avaliação do professor. Consulte [a pesquisa de referências](docs/pesquisa/referencias.md).
+Abra **EduTrack.code-workspace** no VS Code. Documentos históricos preservam seu contexto; para as tarefas atuais, prevalecem as evidências datadas em docs/innovation-lab.
 
-## Pastas do projeto
+## Instalação para desenvolvimento
+Requisitos: Node >=22.13, pnpm, Python 3.12. Para banco real: SQL Server e Microsoft ODBC Driver 18.
 
-| Pasta | Conteúdo |
-| --- | --- |
-| `edutrack-app-completo` | Frontend e OpenSpec em `openspec/` |
-| `edutrack-api` | API, agente de estudos, testes e migrações SQL |
-| `edutrack-documentacao` | Explicações, DER, dicionário e roteiro de apresentação |
-| `.github/workflows` | Modelo de CI; em repositório com subpasta, precisa ser instalado na raiz do repositório e ter os caminhos ajustados |
+Na pasta edutrack-api:
+```powershell
+python -m venv .venv
+.venv\Scripts\python.exe -m pip install -r requirements.lock.txt
+.venv\Scripts\python.exe -m pip install --no-deps -e .
+```
+Na pasta edutrack-app-completo:
+```powershell
+pnpm install --frozen-lockfile
+```
+Use apenas .env.example como referência. Segredos reais ficam fora do Git. Migrações não são automáticas e exigem autorização; nunca execute o esquema de banco vazio sobre um banco existente.
 
-Abra `EduTrack.code-workspace` no VS Code. Leia primeiro [estado atual](edutrack-documentacao/ESTADO_ATUAL.md), [documentação](edutrack-documentacao/DOCUMENTACAO.md) e [validação](edutrack-documentacao/VALIDACAO_FINAL.md).
+## Demonstração isolada, sem banco real
+Terminal 1, em edutrack-api:
+```powershell
+$env:EDUTRACK_QA_PREVIEW='1'
+.venv\Scripts\python.exe -m tests.preview_app
+```
+Terminal 2, em edutrack-app-completo:
+```powershell
+$env:EDUTRACK_API_URL='http://127.0.0.1:8014'
+$env:EDUTRACK_PUBLIC_ORIGIN='http://localhost:3016'
+pnpm exec next dev --webpack --hostname 127.0.0.1 --port 3016
+```
+Abra http://localhost:3016/login e http://127.0.0.1:8014/docs.
+Conta **exclusivamente fictícia dessa fixture**: avaliacao@example.com / Demonstracao-local-2026.
+Ela não é criada em produção. A fixture usa SQLite temporário e não envia e-mail nem chama Google/IA reais. Mantenha os dois terminais abertos.
 
-## Preparar o ambiente
+## Testes e build
+```powershell
+# Backend
+.venv\Scripts\python.exe -m pytest -q
+.venv\Scripts\ruff.exe check edutrack scripts tests
+.venv\Scripts\python.exe scripts/calculate_progress.py --completed 3 --total 4
+# Frontend
+node --test tests/*.test.mjs
+pnpm exec tsc --noEmit
+pnpm run lint
+pnpm run build:hostinger
+pnpm run openspec:validate
+```
+Resultados: 200 testes de API aprovados; 16 casos POSIX pulados no Windows. Frontend: 49 testes aprovados. Build Hostinger, lint e TypeScript verificados localmente.
 
-1. Instale Node.js 22.13 ou superior, pnpm, Python 3.12, SQL Server e Microsoft ODBC Driver 18.
-2. Em `edutrack-api`, crie o ambiente: `python -m venv .venv`.
-3. Instale versões testadas: `.venv\Scripts\python.exe -m pip install -r requirements.lock.txt` e `.venv\Scripts\python.exe -m pip install --no-deps -e .`.
-4. Em `edutrack-app-completo`, execute `pnpm install --frozen-lockfile`.
-5. Configure o banco e segredos conforme os arquivos `.env.example`. Não copie os exemplos para um repositório com valores reais.
-6. Para uma instalação **nova e vazia**, o SQL `migrations/000_schema_completo_banco_vazio.sql` descreve todas as tabelas. Sua execução exige autorização do responsável. Não execute esse arquivo no banco existente.
-7. No frontend, `pnpm run dev:local` inicia site e API locais e abre o Chrome. Nenhuma migração é automática.
+## Novas funcionalidades desta entrega
+- Busca por nome da disciplina **OU** tarefas atrasadas, com paginação e isolamento por usuário.
+- Cálculo Python compartilhado, validação e JSON para a tarefa 12.
+- PDF privado de progresso acumulado com ReportLab, download autenticado e limites explícitos.
+- Especificações, auditoria de modelos existentes e arquivo do planejamento de notas (não implementado).
 
-Site local: <http://localhost:3002/login>. Swagger: <http://127.0.0.1:8000/docs>. O terminal deve continuar aberto.
-
-## Entrega e publicação
-
-- O pacote é uma cópia organizada. O manifesto lista tamanho e SHA-256 de cada fonte.
-- O site público anterior não é atualizado pela criação deste ZIP.
-- A implantação na Hostinger foi autorizada e executada. Consulte [publicação e operação](edutrack-documentacao/PUBLICACAO_HOSTINGER.md).
-- A Edu IA tem planejador por regras funcional; a conversa generativa aguarda chave e modelo. Não apresentar respostas de regras como chamadas a IA externa.
-- O [roteiro dos vídeos](edutrack-documentacao/ROTEIRO_AVALIACAO_FINAL.md) cobre as três etapas da avaliação. Vídeos ainda precisam ser gravados e conferidos.
-
-SMS, cobrança, aplicativo Flutter e administração completa de outras contas estão fora do escopo implementado.
+SQL Server/Python e React substituem Xano/FlutterFlow conforme a arquitetura mantida pelo aluno. A aceitação pedagógica das adaptações depende do professor. Autenticação Gemini Code Assist institucional não foi comprovada.

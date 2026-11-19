@@ -4,6 +4,8 @@
 
 ## Guias em Markdown
 
+- [Google Classroom e Gemini: implementação, privacidade e configuração](CLASSROOM_E_GEMINI.md).
+- [Validação das integrações — 09/11/2026](VALIDACAO_INTEGRACOES.md).
 - [Estado da entrega final](ESTADO_ATUAL.md).
 - [Resultados da validação final](VALIDACAO_FINAL.md).
 - [Preparação para Hostinger](HOSTINGER.md).
@@ -30,6 +32,7 @@ O OpenSpec está instalado como dependência de desenvolvimento do frontend. Nã
 - [Organização acadêmica](../edutrack-app-completo/openspec/specs/organizacao-academica/spec.md).
 - [Administração](../edutrack-app-completo/openspec/specs/administracao/spec.md).
 - [Edu IA](../edutrack-app-completo/openspec/specs/edu-ia/spec.md).
+- [Integrações Google](../edutrack-app-completo/openspec/specs/integracoes-google/spec.md).
 - [Calendário de estudos](../edutrack-app-completo/openspec/specs/calendario-de-estudos/spec.md).
 - [Relatórios semanais](../edutrack-app-completo/openspec/specs/relatorios/spec.md).
 

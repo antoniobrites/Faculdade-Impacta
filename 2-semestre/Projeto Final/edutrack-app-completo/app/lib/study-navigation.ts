@@ -1,6 +1,6 @@
 const localPages = new Set([
   '/dashboard', '/cursos', '/disciplinas', '/tarefas', '/cronometro',
-  '/relatorios', '/edu-ia', '/descobrir', '/perfil', '/upgrade', '/ofensiva',
+  '/relatorios', '/edu-ia', '/descobrir', '/perfil', '/upgrade', '/ofensiva', '/integracoes',
 ]);
 
 /** Apenas telas do protótipo com dados locais podem dispensar uma nova resposta RSC. */

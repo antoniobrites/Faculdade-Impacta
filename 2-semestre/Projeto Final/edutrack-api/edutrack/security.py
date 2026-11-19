@@ -12,6 +12,7 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from pwdlib import PasswordHash
 from sqlalchemy.orm import Session
 
+from edutrack.closed_access import require_closed_access
 from edutrack.database import get_db
 from edutrack.models import User
 
@@ -106,6 +107,7 @@ def current_user(
     # Importação local evita dependência circular com as rotas de verificação.
     from edutrack.email_verification import require_verified
 
+    require_closed_access(request, db, user)
     require_verified(request, db, user)
     # Impede que uma aba antiga grave na conta que entrou em outra aba.
     expected = request.headers.get("X-EduTrack-User")

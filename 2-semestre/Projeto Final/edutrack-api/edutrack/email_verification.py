@@ -9,6 +9,7 @@ from fastapi import APIRouter, Depends, HTTPException, Request
 from sqlalchemy import select, update
 from sqlalchemy.exc import IntegrityError
 
+from edutrack.closed_access import require_closed_invitation
 from edutrack.database import get_db, require_writes
 from edutrack.email_delivery import EmailDeliveryError
 from edutrack.models import EmailVerification, User, utc_now
@@ -51,7 +52,9 @@ def enabled(request):
 def options(request: Request):
     settings = request.app.state.settings
     return {
-        "email_verification_required": settings.email_verification_enabled,
+        "restricted_adults_mode": settings.closed_adult_access,
+        "registration_enabled": not settings.closed_adult_access,
+        "email_verification_required": settings.email_verification_enabled or settings.closed_adult_access,
         "email_delivery_configured": settings.email_configured,
         "password_reset_available": settings.password_reset_enabled and settings.email_configured,
         "cpf_validation": "digitos_verificadores_sem_armazenamento",
@@ -64,6 +67,7 @@ def request_verification(body: Login, request: Request, db=Depends(get_db)):
     if not request.app.state.settings.email_configured:
         raise HTTPException(503, "SendGrid não configurado. Solicite a configuração ao responsável pelo EduTrack.")
     user = authenticate(db, body)
+    require_closed_invitation(request, user)
     record = db.get(EmailVerification, user.id)
     if record is None:
         record = EmailVerification(usuario_id=user.id)
@@ -114,6 +118,7 @@ def request_verification(body: Login, request: Request, db=Depends(get_db)):
 def verify_email(body: EmailConfirmation, request: Request, db=Depends(get_db)):
     enabled(request)
     user = authenticate(db, body)
+    require_closed_invitation(request, user)
     record = db.get(EmailVerification, user.id)
     now = utc_now()
     invalid = HTTPException(400, "Código inválido, expirado ou já utilizado. Solicite um novo código se necessário.")
