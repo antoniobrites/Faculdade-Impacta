@@ -118,5 +118,16 @@
         38
       ]
     }
-  ]
+  ],
+  "revisao_pdf_dupla": {
+    "data": "2026-11-19",
+    "titulo": "EduTrack 16 tarefas",
+    "paginas_atualizadas": [
+      1,
+      4
+    ],
+    "prints_github_na_pagina_4": 2,
+    "paginas_preservadas": 37,
+    "sha256_pdf": "e30aed3c15e1190c5328dff5aa1fdc1bebcacc7940acc7ba2fcc06b5fb02cb7f"
+  }
 }

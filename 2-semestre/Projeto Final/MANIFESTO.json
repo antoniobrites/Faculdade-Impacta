@@ -1,5 +1,5 @@
 {
-  "data": "2026-11-17",
+  "data": "2026-11-19",
   "arquivos": [
     {
       "arquivo": ".dockerignore",
@@ -133,8 +133,8 @@
     },
     {
       "arquivo": "docs/innovation-lab/cobertura-imagens.json",
-      "bytes": 1852,
-      "sha256": "cac7ac5428f479334c95832905af80d4b3dc0b93db3b58ea9d3129f8eeeac5f1"
+      "bytes": 2150,
+      "sha256": "683bb668d39d3e27020b6e9ecc178af12008ad9d1be4673ee21a2df9c499ca5f"
     },
     {
       "arquivo": "docs/innovation-lab/evidencias/01-03-vscode-versoes.png",
@@ -333,8 +333,8 @@
     },
     {
       "arquivo": "docs/innovation-lab/LEIA-ME.md",
-      "bytes": 2070,
-      "sha256": "9680aa3003dcd76e47713617bdacbc94979deda990e41d93bdee5af1a845981e"
+      "bytes": 2481,
+      "sha256": "870a88441760625710ea1ae91a6bbbd604d1d3c19dd1c28ab66475c66a330a10"
     },
     {
       "arquivo": "docs/innovation-lab/LEITURA_AGENTS_IA.md",
@@ -348,8 +348,8 @@
     },
     {
       "arquivo": "docs/innovation-lab/RELATORIO_FINAL.pdf",
-      "bytes": 3203477,
-      "sha256": "b7e2cf8a6d9014e3de862d5ecfad9a48f8ea397e9030ef317af519c56233b5f2"
+      "bytes": 3554536,
+      "sha256": "e30aed3c15e1190c5328dff5aa1fdc1bebcacc7940acc7ba2fcc06b5fb02cb7f"
     },
     {
       "arquivo": "docs/innovation-lab/resumo.json",
@@ -1727,5 +1727,6 @@
       "sha256": "05423d29c67403e983deb5f48bc01a85d64dd9265ed1c26fe96701a4f94a275f"
     }
   ],
-  "nota": "Fontes revisadas e evidências fictícias; sem dependências, bancos de alunos ou segredos locais. Não comprova deploy."
+  "nota": "Fontes revisadas e evidências fictícias; sem dependências, bancos de alunos ou segredos locais. Não comprova deploy.",
+  "revisao": "Relatório em dupla: capa sem nomes pessoais e dois repositórios na página 4. Código preservado."
 }
